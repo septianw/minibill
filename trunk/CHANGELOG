@@ -1,0 +1,452 @@
+---------------------------------------------------------------------------
+[2007-10-24 1.2.7:1] 
+---------------------------------------------------------------------------
+- changed a lot in how mod_shipping plugs into the system
+- added a mod_shipping flat_rate variable for flat rate shipping to orders that 
+	have products in them that "weigh" something.
+- Database Changes
+	alter table mod_shipping_data add shipping_cost float(6,2);
+- changed loadPlugins.html for 1 plugins to update multiple sections on one page
+- added function in include/functions called "getGrandTotal"
+
+---------------------------------------------------------------------------
+[2007-10-10 1.2.7] 
+---------------------------------------------------------------------------
+- Fixed some overlooked database errors in the DEV version
+alter table category change category_id id int unsigned not null;
+alter table mod_download change item_id product_id int unsigned not null;
+alter table orders change item_id product_id int unsigned not null;
+alter table templates drop primary key;
+alter table templates add id int unsigned not null primary key auto_increment;
+
+---------------------------------------------------------------------------
+[2007-06-29 1.2.6] 
+---------------------------------------------------------------------------
+- Fixed issues on the order process.  Still not 100% where I'd like it to be
+  but getting there
+
+---------------------------------------------------------------------------
+[2007-04-03 1.2.5] 
+---------------------------------------------------------------------------
+- *HOPEFULLY* I fixed some SHOW STOPPING issues with recurring billing  http://www.ultrize.com/forums/- any testers?
+
+---------------------------------------------------------------------------
+[2006-11-16 1.2.4] 
+---------------------------------------------------------------------------
+- Added manual shipping entry fields
+- Updated admin/templates/ledger.html to have manual shpping button
+alter table mod_shipping_data drop index tracking_no;
+alter table mod_shipping_data add index(tracking_no);
+
+
+---------------------------------------------------------------------------
+[2006-11-11 1.2.4] 
+---------------------------------------------------------------------------
+alter table users add company char(255) not null after lastname
+alter table users add fax char(255) not null after zipcode
+
+---------------------------------------------------------------------------
+[2006-11-06 1.2.4] 
+---------------------------------------------------------------------------
+- Increased the product price capability.. 
+- alter table products change price price float(7,2) not null default 0;
+
+---------------------------------------------------------------------------
+[2006-10-30 1.2.4] 
+---------------------------------------------------------------------------
+- Problem with gz handler and mod_download fixed.
+- Fixed how ordering works with login to make it a bit more seamless
+
+---------------------------------------------------------------------------
+[2006-10-27 1.2.4] 
+---------------------------------------------------------------------------
+- Ok, since there has been a sudden rash of alleged security issues with
+minibill, I thought I'd take a moment and address this in the changelog
+which apparently is where 90% of you are going anyway.
+
+1) It's only an issue if your php has register_globals ON
+2) 90% of web hosts have upgraded to php 4.3 and up which defaults 
+register_globals to OFF
+3) I've since added an ini directive in the frontcontroller to turn this off
+for you .. JUST IN CASE
+
+- And last but not least, I upped the version # another point so you can
+tell the difference.  
+
+Have a nice day!
+
+---------------------------------------------------------------------------
+[2006-09-12 1.2.3] 
+---------------------------------------------------------------------------
+- Small change in the orderform template IE wasn't changing payment type
+
+---------------------------------------------------------------------------
+[2006-09-11 1.2.3] 
+---------------------------------------------------------------------------
+- Fixed security issue
+- PAYPAL with IPN Now works
+
+---------------------------------------------------------------------------
+[2006-07-14 1.2.2] Smattering of fixes
+---------------------------------------------------------------------------
+- More small changes
+
+---------------------------------------------------------------------------
+[2006-06-22 1.2.2] Smattering of fixes
+---------------------------------------------------------------------------
+- A little tweakage for modules:
+	mv admin_menu.php admin/menu.php
+	mv user_menu.php menu.php
+
+---------------------------------------------------------------------------
+[2006-06-21 1.2.2] Smattering of fixes
+---------------------------------------------------------------------------
+- Lots of little "here and there's"
+- Successful purchases now sends an invoice email (see receipt_email.html)
+- Some slight color changes for buttons
+
+---------------------------------------------------------------------------
+[2006-06-21 1.2.1] plugin quirk fixed
+---------------------------------------------------------------------------
+- Added "STANDALONE" session value which will allow a certain module to be run stand-alone.
+	You will have to create the entire menu system. (Logout etc.)
+
+---------------------------------------------------------------------------
+[2006-06-15 1.2.1] plugin quirk fixed
+---------------------------------------------------------------------------
+- Fix a small issue where having register_globals on was overwriting data!
+  See: http://www.ultrize.com/forums/index.php?page=showPosts&topic_id=129#post_822
+  Thanks to Sebastian Greco (http://www.bothmedia.com)
+
+---------------------------------------------------------------------------
+[2006-06-12 1.2.1] plugin quirk fixed
+---------------------------------------------------------------------------
+- stripslashes problem in mod_cart plugin, fixed
+
+---------------------------------------------------------------------------
+[2006-05-17 1.2.1] Small plugin installation quirk fixed
+---------------------------------------------------------------------------
+- The sysMsg class was being loaded AFTER plugins were loaded causing issues with system messages not being displayed correctly when plugins were initialized.
+- admin/index.php is no longer a COPY of regular index.php and just REQUIRES it
+
+---------------------------------------------------------------------------
+[2006-05-12 1.2.1] Installation issues fixed	
+---------------------------------------------------------------------------
+- Fixed lame issues for installation - which should work better now
+
+---------------------------------------------------------------------------
+[2006-04-07 1.2.0] mysql database fix - products not updating 
+---------------------------------------------------------------------------
+- FIXed products not updating problem
+
+---------------------------------------------------------------------------
+[2006-04-02 1.2.0] Template Layout changes / affects all plugins
+---------------------------------------------------------------------------
+- FIX:
+    Templates can now be "positioned" within the page layout:
+	pos
+		leftSide
+		rightSide
+		above
+		below
+		navBelow
+		navAbove
+
+---------------------------------------------------------------------------
+[2006-03-20 1.1.9] Minor Database Changes
+---------------------------------------------------------------------------
+- FIX: 
+	Moved admin templates into admin dir
+	Fixed default_layout not to check for ADMIN_MODE any more
+
+---------------------------------------------------------------------------
+[2006-03-20 1.1.9] Minor Database Changes
+---------------------------------------------------------------------------
+alter table products add weight float(3,3) not null after price;
+
+---------------------------------------------------------------------------
+[2006-02-14 1.1.9] Major Backend Changes
+---------------------------------------------------------------------------
+- FIX: 
+	Order class needed to maintain gateway, orders weren't being posted.
+
+---------------------------------------------------------------------------
+[2006-02-13 1.1.8] Major Backend Changes
+---------------------------------------------------------------------------
+- DATABASE:
+	alter table orders change purchased_from gateway char(255) not null;
+
+---------------------------------------------------------------------------
+[2006-02-08 1.1.8] Major Backend Changes
+---------------------------------------------------------------------------
+- SECURITY: Session save path now configurable (config.php)
+- SECURITY: Template compile dir now configurable
+- Installer updated
+- Disclaimer added
+- Plugins changed once more and make more sense.
+
+---------------------------------------------------------------------------
+[2006-02-03 1.1.7] Major Backend Changes
+---------------------------------------------------------------------------
+- mod_cart added for shopping cart features (index.php?page=cart)
+- Now keeps track of inventory
+- Still having problems with IE and layouts [Any help here would be a plus]
+- Order pre-payment working correctly
+- Billing Cron Job now working, someone please test this
+
+---------------------------------------------------------------------------
+[2006-01-24 1.1.6] Major Backend Changes
+---------------------------------------------------------------------------
+- System message class implemented
+- order is now able to store cart information
+- Re-built how plugins work completely, old plugins won't work now, easy to 
+  fix though.
+
+---------------------------------------------------------------------------
+[2006-01-24 1.1.5] Major Backend Changes
+---------------------------------------------------------------------------
+- Fixed order process
+- Allowed users to update quantity in order form (0 to remove)
+- Many bundled plugin fixes
+- PayPal subscription ordering enabled (IPN)
+- Fixed minor security issues
+- Fixed PHP 5 SESSION issues
+
+---------------------------------------------------------------------------
+[2006-01-21 1.1.4] Major Backend Changes
+---------------------------------------------------------------------------
+- Major frontend changes
+- Major frontend engine changes
+- Enabled Message Dispaly correctly
+- Templates now in layout format
+- Cleaned up CSS
+
+---------------------------------------------------------------------------
+[2006-01-17 1.1.4] Major Backend Changes
+---------------------------------------------------------------------------
+- Fixed a lot of crap!!
+- Fixed installer
+- Fixed users able to login as admin
+- Fixed some weird session problems
+- Fixed plugin installtion issues
+- Cleaned up templates
+- TODO: check for mcrypt and set the secret_key value on install.
+
+---------------------------------------------------------------------------
+[2006-01-14 1.1.3] Major Backend Changes
+---------------------------------------------------------------------------
+- Fixed javascript error on login forms.
+- Fixed default page on admin login
+
+---------------------------------------------------------------------------
+[2006-01-12] Major Backend Changes
+---------------------------------------------------------------------------
+- Changed so same index.php to be used in both admin and normal use mode
+  Required me adding anew directory: templates/admin/templates_c
+  don't forget to chmod 777 templates/admin/templates_c
+
+---------------------------------------------------------------------------
+[2006-01-09] Major Backend Changes
+---------------------------------------------------------------------------
+- Fixed decrypt function .. rtrimmed null chars at end of returned str
+
+---------------------------------------------------------------------------
+[2005-10-14] Major Backend Changes
+---------------------------------------------------------------------------
+- Made invoice & billing template look more perdy
+- Fixed blank page when "PAY" button clicked in user bakcend
+- Fixed template issue in billing error in crontabs
+- Fixed run_billing crontab: 
+  Now uses pay_fail invoice config variable
+  Now sends suspend / cancellation notices
+  Suspends accounts if pay_fail threshold too high
+- Added billing_suspend.html template
+
+---------------------------------------------------------------------------
+[2005-09-28] Major Backend Changes
+---------------------------------------------------------------------------
+- Fixed billing_cancel, billing_success, billing_failure for mod_download modules
+- Made some minor changes to cron files run_billing.php and run_invoicing.php
+
+---------------------------------------------------------------------------
+[2005-09-28] Major Backend Changes
+---------------------------------------------------------------------------
+- Added Install Script
+
+---------------------------------------------------------------------------
+[2005-09-27] Major Backend Changes
+---------------------------------------------------------------------------
+- Fixed plugin capability in main minibill
+
+---------------------------------------------------------------------------
+[2005-09-17] Major Frontend / Backend Changes
+---------------------------------------------------------------------------
+- Went through MiniBill all day, and fixed some trouble spots, and some security issues.
+- Upgraded most templates to use new css styles for easier editing
+- mod_download is now completely useful, and actually works.
+- some templates reorganized
+- There is a lot done here, and I highly recommend you upgrade!
+
+---------------------------------------------------------------------------
+[2005-09-15] Small DB Change
+---------------------------------------------------------------------------
+alter table orders change status status enum('paid','due','cancel','suspend') default 'paid';
+
+---------------------------------------------------------------------------
+[2005-06-20] Small Database Change
+---------------------------------------------------------------------------
+- Allow for barcoded items, i.e. autoship
+ALTER TABLE products ADD item_code VARCHAR(255) NOT NULL;
+ALTER TABLE orders ADD tracking_no CAR(255) NOT NULL AFTER contract;
+CREATE TABLE order_shipInfo (ship_id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,uniq_id CHAR(20) NOT NULL,tracking_no CHAR(255) NOT NULL,packaged DATETIME NOT NULL,shipped DATETIME NOT NULL,INDEX(uniq_id));
+- Edited templates/admin/editProduct.html to add field for barcode
+
+---------------------------------------------------------------------------
+[2005-04-27] Small Database Change
+---------------------------------------------------------------------------
+- Now allows, semi-annual, and quarterly billing
+  ALTER TABLE products CHANGE is_recurring is_recurring ENUM('no','Daily','Weekly','Monthly','Quarterly','Semi','Yearly');
+
+---------------------------------------------------------------------------
+[2005-04-19] new features
+---------------------------------------------------------------------------
+- Fixed send mail with invoicing - incorrect mime settings
+
+---------------------------------------------------------------------------
+[2005-01-20] new release 1.0:1 Beta
+---------------------------------------------------------------------------
+- BETA RELEASE!
+- Added lost_password.php
+
+---------------------------------------------------------------------------
+[2005-01-19] new build 1.4:5 Alpha
+---------------------------------------------------------------------------
+- Almost to BETA release!
+- billing cron now sends cancellation notices
+- billing cron now hooks into plugins for cancellation modules
+- minor Admin interface UI improvements
+- Added ability to remove orders / order groups
+- Added ip address to orders field
+- Deleted postOrder.php from includes dir [obsolete]
+- DATABASE CHANGES [Effect just about every file in the lot]
+  ALTER TABLE orders CHANGE paid status ENUM('paid','due','cancel','suspend');
+  ALTER TABLE orders ADD ip char(24) NOT null AFTER contract;
+
+---------------------------------------------------------------------------
+[2005-01-07] new build 1.4:4 Alpha
+---------------------------------------------------------------------------
+- Beginning to create classes for various reusable code segments
+- Created an OrderClass class for adding orders to a user order list
+- Fixed history.html template issue for invoiced orders
+- Added Due date for invoice, so you can set a custom due date for the invoice
+
+---------------------------------------------------------------------------
+[2005-01-07] new build 1.4:3 Alpha
+---------------------------------------------------------------------------
+- Turn off demo mode allwed if in demo mode.
+
+---------------------------------------------------------------------------
+[2005-01-06] new build 1.4:2 Alpha
+---------------------------------------------------------------------------
+- Fixed menus, you now know where you are
+- Fixed some config issues with recurring billing cron
+- Fixed some config issues with invoicing cron
+
+---------------------------------------------------------------------------
+[2005-01-04] new version 1.4:1 Alpha
+---------------------------------------------------------------------------
+- Fixed double order form display on form error
+- Slightly different logo.gif for you minibill eyecandy lovers.
+- Added "TEMPLATES" as main admin option
+- Added Item Deletion Confirmation
+- New configuration structure breaks 1.3 installs
+- Major upgrades:
+  1) backup your config.php for reference (cp config.php config.bak)
+  2) Untar new version 
+  3) import sql/upgrade1.3.sql into your database
+     * This will reset your admin password *
+     login    : admin 
+     password : admin
+  4) Log into /admin/
+  5) Click on the "CONFIG" tab
+  6) refer to your config.bak for changes.
+
+- Added new table "config"
+- VERY VERY Flexible configuration options now
+- Changed config variables to load from database
+- Almost ALL Files affected implementing config system
+
+---------------------------------------------------------------------------
+[2004-12-29] new version 1.3:1 Alpha
+---------------------------------------------------------------------------
+- Implemented pluggable merchant gateway system (payment.class.php)
+- modified run_billing.php cron script to implement payment.class.php
+- Wrote plugin for authorize.net
+- Cleaned up straggler .svn directories
+- New package no longer has content in templates_c 
+- Hopefully fixed strange login behavior for new installs
+
+---------------------------------------------------------------------------
+[2004-12-28] new build: 6
+---------------------------------------------------------------------------
+- Fixed recurring crontabs (Billing and invoicing missing smarty dirs)
+- changed cron_run to include path to minibill as argv[1]
+- added ability to disable invoicing by setting a config var send_invoice_advance
+- added invoice configuration section to config.php
+- added send_invoice_advance to config.php
+
+---------------------------------------------------------------------------
+[2004-12-27] new build: 5
+---------------------------------------------------------------------------
+- Removed .svn directories
+- Moved some logic which was in config.php into separate files
+	dbConnect.php
+	loadPlugins.php
+	versionCheck.php
+
+
+---------------------------------------------------------------------------
+[2004-12-22]
+---------------------------------------------------------------------------
+- Changed array_merge to include the $_SESSION variable and this hopefully
+fixed login problems for mac, and some IE people
+
+---------------------------------------------------------------------------
+[2004-12-18]
+---------------------------------------------------------------------------
+- Module support
+- Created mod_shipping
+- Reorganized file structure
+- Updates to index.php to accomodate modules
+- Removed site out of the dev tree
+
+---------------------------------------------------------------------------
+[2004-12-12]
+---------------------------------------------------------------------------
+BETTER WIN32 SUPPORT
+- Moved config.php, and changed paths in admin/index.php to reflect move
+
+---------------------------------------------------------------------------
+[2004-12-11]
+---------------------------------------------------------------------------
+ADDED PLUGIN SUPPORT
+- HOWTO
+	add plugin to config.php at top
+	add {include file="plugins/xxx/templates/xxx"} into correct template
+
+---------------------------------------------------------------------------
+[2004-12-09]
+---------------------------------------------------------------------------
+USER PANEL
+- Changed user history template to more usable layout
+- Added total due, total paid, and grand total to user order history
+
+ADMIN PANEL
+- Fixed ledger to display order in group, now links to show order group
+- Fixed totals calculation when showing groups
+
+---------------------------------------------------------------------------
+2004-11-30
+---------------------------------------------------------------------------
+ADMIN PANEL
+- Fixed Category updating, deletion

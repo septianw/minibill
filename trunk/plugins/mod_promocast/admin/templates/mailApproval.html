@@ -1,0 +1,20 @@
+{if $messages}
+<table width="100%">
+	<Tr>
+		<th>Sender</th>
+		<th>Sender Email</th>
+		<th>Subject</th>
+		<th>Date</th>
+	</tr>
+	{foreach from=$messages item=message}
+	<tr style="background:{cycle values="#EFEFEF,#FFFFFF"}">
+		<td><a href="index.php?page=editUser&id={$message.q_u_id}">{$message.q_sender_name}</a></td>
+		<td><a href="index.php?page=viewMessage&id={$message.q_id}&nohead=1&nomenu=1"><img src="../img/edit.gif" align="absmiddle"> {$message.q_sender_email}</a></td>
+		<td>{$message.q_subject}</td>
+		<td>{$message.mc_send_date}</td>
+	</tr>
+	{/foreach}
+</table>
+{else}
+	<h2>YAY! -- No messagse to approve right now!</h2>
+{/if}

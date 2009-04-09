@@ -1,0 +1,9 @@
+{include file="catSelect.html"}
+<h2>{$catName|default:"ROOT"}</h2>
+<form name="category" method="POST" action="index.php">
+<input type="hidden" value="newCat" name="action">
+<input type="hidden" name="cat[parent_id]" value="{$smarty.get.id|default:0}">
+New Category: <input type="text" name="cat[title]">
+	<button type="submit">New Category</button>
+</form>
+{$cats}			

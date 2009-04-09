@@ -1,0 +1,14 @@
+{if $LOGGED_IN && !$smarty.get.order && $menu}
+<div id="nav">
+	{foreach from=$menu item=items}
+	<a href="index.php?page={$items.item}" title="{$items.title}">{$items.desc}</a>
+	{if $submenu && $smarty.session.page_cat == $items.item}
+		<div class="submenu">
+			{foreach from=$submenu key=page item=desc}
+				<a href="index.php?page={$page}" style="background:none;text-align:right">&raquo; {$desc}</a>
+			{/foreach}
+		</div>
+	{/if}
+	{/foreach}
+</div>
+{/if}

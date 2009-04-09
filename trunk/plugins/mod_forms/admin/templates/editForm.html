@@ -1,0 +1,41 @@
+{literal}
+<script language="javaScript">
+function testForm(id)
+{
+	window.open('../index.php?page=form&form_id='+id,'testForm');
+}
+
+</script>
+{/literal}
+<h2 style="margin-left:20px">Form: {$formName}</h2>
+<div style="margin:20px">
+	<input type="button" onclick="javascript:document.location.href='index.php?page=newQuestion&form_id={$id}'" value="Add New Question" class="btn">
+	<input type="button" onclick="javaScript:testForm({$id})" value="Test Form" class="btn">
+</div>
+{if $questions}
+<form action="index.php" method="POST">
+<input type="hidden" name="form_id" value="{$id}">
+<input type="hidden" name="action" value="reorderQuestions">
+<table width="100%">
+	<tr>
+		<th>Order</th>
+		<th>Caption</th>
+		<th>Type</th>
+		<th>Required</th>
+		<th></th>
+	</tr>
+	{foreach from=$questions item=q}
+	<tr style="background:{cycle values="#EFEFEF,#FFFFFF"}">
+		<td><input type="text" name="order[{$q.id}]" value="{$q.q_order}" size="3" style="font:normal 11px Courier;border:0px;text-align:center"></td>
+		<td><a href="index.php?page=editQuestion&id={$q.id}" title="Edit Question">{$q.q_caption|default:"<i>n/a</i>"}</a></td>
+		<td>{$q.q_type}</td>
+		<td align="center"><font color="{if $q.q_isRequired == 'yes'}green{else}red{/if}">{$q.q_isRequired}</font></td>
+		<td><a href="index.php?page=editQuestion&id={$q.id}" title="Edit Question"><img src="../img/edit.gif" border="0" align="absmiddle"></a> | <a href="javascript:confirmAction('index.php?action=delQuestion&id={$q.id}&form_id={$id}','Delete question:\n{$q.q_caption|addslashes}')" title="Delete Question"><img src="../img/trash.gif" border=0 align="absmiddle"></a></td>
+	</tr>
+	{/foreach}
+	<tr>
+		<td colspan="4"><input type="submit" value="&laquo; Reorder &raquo;" class="btn"></td>
+	</tr>
+</table>
+</form>
+{/if}

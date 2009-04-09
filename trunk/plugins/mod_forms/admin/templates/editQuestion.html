@@ -1,0 +1,54 @@
+<form action="index.php" method="POST">
+<input type="hidden" name="action" value="saveQuestion">
+{if $q.id}
+	<input type="hidden" name="q[id]" value="{$q.id}">
+{/if}
+	<input type="hidden" name="q[form_id]" value="{$q.form_id}">
+
+<table id="editForm" width=720>
+	<tr>
+		<th colspan="2">Question</th>
+	</tr>
+	<tr>
+		<td>Question Type</td>
+		<td><select name="q[q_type]">{html_options values=$q_types selected=$q.q_type output=$q_types}</select></td>
+	</tr>
+	<tr>
+		<td>Required</td>
+		<td>{html_radios name="q[q_isRequired]" values=$q_isRequired selected=$q.q_isRequired output=$q_isRequired}</select></td>
+	</tr>
+	<tr>
+		<td width="200">Caption / Question</td><td><textarea name="q[q_caption]" rows=7 style="width:100%">{$q.q_caption}</textarea></td>
+	</tr>
+	<tr>
+		<td>Possible Options / Values<br/><sub>Separate with the PIPE delimiter, <Br />1 question per line e.g.<Br />Text|Value|Cost</sub></td>
+		<td><textarea name="q[q_values]" rows="7" style="width:100%">{$q.q_values}</textarea></td>
+	</tr>
+	<tr>
+		<td>Error Message<br/></td>
+		<td><textarea name="q[q_errortext]" rows=7 style="width:100%">{$q.q_errortext}</textarea></td>
+	</tr>
+	<tr>
+		<th colspan="2">Options</th>
+	</tr>
+	<tr>
+		<td>Width</td>
+		<td><input size="3" type="text" name="q[q_width]" value="{$q.q_width}"></td>
+	</tr>
+	<tr>
+		<td>Height</td>
+		<td><input size="3" type="text" name="q[q_height]" value="{$q.q_height}"></td>
+	</tr>
+	<tr>
+		<td>Style</td>
+		<td><input style="width:100%" type="text" name="q[q_style]" value="{$q.q_style}"></td>
+	</tr>
+	<tr>
+		<td>Comparative Regex<br/></td>
+		<td><input style="width:100%" name="q[q_preg]" type="text" value="{$q.q_preg}"></td>
+	</tr>
+	<tr>
+		<td></td><td align="right"><input type="submit" value="&laquo; Save &raquo;" class="btn"></td>
+	</tr>
+</table>
+</form>

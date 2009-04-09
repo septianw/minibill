@@ -1,0 +1,57 @@
+<html>
+<body>
+<font face="Lucida Grande" size="10px">
+{if $days_in_advance}
+{$fname}, <br /><br />
+                                                                                
+This is a quick {$days_in_advance} day advance reminder of your billing cycle. <br/>
+On {$charge_date} your card will be billed for the amount of {$grand_total}.
+<br /><br />
+{/if}
+
+<table width="70%">
+        <tr>
+                <td colspan="3">
+                        <table width="100%">
+                                <tr>
+                                        <td valign="top">{$config.invoice_friendly}<br />
+{$config.invoice_email} <br />
+     {$config.company.address} <br />
+                                                {$config.company.city} <br />
+                                                {$config.company.state} <br />
+                                                {$config.company.zipcode} <br />
+                                                {$config.company.country} <br />
+                                                {$config.company.phone} <br />
+                                        </td>
+                                        <td valign="top">{$user.firstname} {$user.lastname}<br />
+                                                {$user.address} <br />
+                                                {$user.city} <br />
+                                                {$user.state} <br />
+                                                {$user.zipcode} <br />
+                                                {$user.country} <br />
+                                                {$user.phone} <br />
+                                </tr>
+                        </table>
+                </td>
+        </tr>
+        <tr>
+                <td><b>ITEMS</b></td>
+                <td align="right"><b>AMOUNT</b></td>
+                <td><b>ORDER ID</b></td>
+        </tr>
+{foreach from=$items item=i}
+        <tr>
+                <td><font face="arial" size="-1">{$i.desc}</font></td>
+                <td align="right"><font face="arial" size="-1">{$i.amount}</font></td>
+                <td><font face="arial" size="-1">{$i.uniq_id}</font></td>
+        </tr>
+{/foreach}
+        <tr>
+                <td colspan="2" align="right"><i><b>Total:</b></i></td>
+                <td align="right"><b><i>{$grand_total}</i></b></td>
+        </tr>
+</table>
+
+</font>
+</body>
+</html>

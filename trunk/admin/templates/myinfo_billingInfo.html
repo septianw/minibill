@@ -1,0 +1,57 @@
+<table cellpadding="3" width="100%">
+	<tr>
+		<th colspan="2">Billing Information</b></td>
+	</tr>
+
+	<tr>
+		<td><b>Email Adress</b></td>
+		<td><input type="text" value="{$user.email}"name="user[email]"></td>
+	</tr>
+	<tr>
+		<td><b>Password</b></td>
+		<td><input type="text" value="{$user.password}"name="user[password]"></td>
+	</tr>
+	<tr>
+		<td><b>First Name</b></td>
+		<td><input type="text" value="{$user.firstname}"name="user[firstname]"></td>
+	</tr>
+	<tr>
+		<td><b>Last Name</b></td>
+		<td><input type="text" value="{$user.lastname}"name="user[lastname]"></td>
+	</tr>
+	<tr>
+		<td><b>Phone Number</b></td>
+		<td><input type="text" value="{$user.phone}"name="user[phone]"></td>
+	</tr>
+	<tr>
+		<td><b>Address</b></td>
+		<td><input type="text" value="{$user.address}"name="user[address]"></td>
+	</tr>
+	<tr>
+		<td><b>City</b></td>
+		<td><input type="text" value="{$user.city}"name="user[city]"></td>
+	</tr>
+    <tr>
+        <td><b>State</b></td>
+        <td>
+            <select name="user[state]">
+            {state_select selected=$user.state}
+            </select>
+        </td>
+    </tr>
+	<tr>
+		<td><b>Zip Code</b></td>
+		<td><input type="text" value="{$user.zipcode}"name="user[zipcode]"></td>
+	</tr>
+    <tr>
+        <td><b>Country</b></td>
+        <td>
+            <select name="user[country]">
+            {country_select selected=$user.country}
+            </select>
+        </td>
+    </tr>
+	<tr>
+		<td colspan="2" align="center"><input type="submit" value="Update" class="btn"></td>
+	</tr>
+</table>

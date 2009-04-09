@@ -1,0 +1,65 @@
+<Br />
+{if !$client.id}
+	<h2 style="margin:0px">Add New Billing Account</h2><Br />
+{/if}
+<table cellpadding="3">
+	<form action="index.php" method="POST">
+	<input type="hidden" name="action" value="timesheet_saveClient">
+	<tr>
+		<th colspan="2" class="heading">{$client.info.clientDesc|stripslashes}</b></td>
+	</tr>
+	<tr>
+		<td><b>Client ID</b></td>
+		<td>{$client.ts_id}<input type="hidden" value="{$client.ts_id}"name="client[ts_id]"></td>
+	</tr>
+	{if $client.id} 
+	<tr>
+		<td><b>MiniBill ID</B></td>
+		<td>{$client.id} <input type="hidden" value="{$client.id}" name="client[mb_id]"> </td>
+	</tr>
+	{/if}
+	<tr>
+		<td><b>Password</b></td>
+		<td><input type="text" value="{$client.password}"name="client[password]"></td>
+	</tr>
+	<tr>
+		<td><b>Email</b></td>
+		<td><input type="text" value="{$client.email}"name="client[email]"></td>
+	</tr>
+	<tr>
+		<td><b>First Name</b></td>
+		<td><input type="text" value="{$client.firstname}"name="client[firstname]"></td>
+	</tr>
+	<tr>
+		<td><b>Last Name</b></td>
+		<td><input type="text" value="{$client.lastname}"name="client[lastname]"></td>
+	</tr>
+	<tr>
+		<td><b>Phone Number</b></td>
+		<td><input type="text" value="{$client.phone}"name="client[phone]"></td>
+	</tr>
+	<tr>
+		<td><b>Address</b></td>
+		<td><input type="text" value="{$client.address}"name="client[address]"></td>
+	</tr>
+	<tr>
+		<td><b>City</b></td>
+		<td><input type="text" value="{$client.city}"name="client[city]"></td>
+	</tr>
+	<tr>
+		<td><b>State</b></td>
+		<td><input type="text" value="{$client.state}"name="client[state]"></td>
+	</tr>
+	<tr>
+		<td><b>Zip Code</b></td>
+		<td><input type="text" value="{$client.zipcode}"name="client[zipcode]"></td>
+	</tr>
+	<tr>
+		<td><b>Country</b></td>
+		<td><input type="text" value="{$client.country}" name="client[country]"></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center"><input type="submit" value="Update" class="btn"></td>
+	</tr>
+	</form>
+</table>

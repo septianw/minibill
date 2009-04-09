@@ -1,0 +1,73 @@
+</table>
+{if $prods}
+<form action="index.php" method="POST" name="orderform">
+<input type="hidden" class="hidden" name="action" value="purchase">
+<input type="hidden"  class="hidden"name="user[comments]" value="{$comments}">
+{if $order_id}
+<input type="hidden" class="hidden" name="order_id" value="{$order_id}">
+{/if}
+</div>
+
+	<div style="width:720px;text-align:left">
+			{include file="orderform_checkoutItems.html"}
+			{if $error}
+				{include file="orderform_errors.html"}
+			{/if}
+	</div>
+	<div style="width:710px;background:#EFEFEF;text-align:left;margin:20px 0px;padding:10px 5px;">
+			{include file="orderform_billingInfo.html"}
+			{include file="loadPlugins.html" pos="appendFormLeft"}
+	</div>
+
+		<div style="{if !$error}display:none{/if}" id="paymentOptions">
+		<table style="margin:0px;padding:0px;" width="720">
+			<tr>
+				<th colspan="2">Payment Options</th>
+			</tr>
+			<tr>
+				<td valign="top">
+					<img src="img/ssl_lock.jpg"><img src="img/visa_mc.gif"><Br />
+{if $config.merchant.use_authnet}
+					<input type="radio" name="payment_type" value="AUTHNET" onClick="javascript:reveal('creditCard','paypal_ipn')" CHECKED> Credit Card<br />
+{/if}
+{if $config.merchant.use_paypal}
+					<input type="radio" name="payment_type" value="PAYPAL" onClick="javascript:reveal('paypal_ipn','creditCard' )"{if !$config.merchant.use_authnet}CHECKED{/if}> PayPal<br />
+{/if}
+					{include file="loadPlugins.html" pos="paymentOption"}
+				</td>
+				<td>
+					{if $config.merchant.use_authnet}
+						<div id="creditCard" style="height:170px">
+							{include file="orderform_creditCard.html"}
+						</div>
+					{/if}
+					{if $config.merchant.use_paypal}
+						<div id="paypal_ipn" style="height:130px;{if $config.merchant.use_authnet}display:none;{/if}">
+							{include file="orderform_paypal_ipn.html"}
+						</div>
+					{/if}
+					{include file="loadPlugins.html" pos="paymentOptionData"}
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					{include file="loadPlugins.html" pos="appendFormRight"}
+					<br /><div style="float:right"><input type="submit" class="checkout" value="Send Payment &gt;"></div>
+				</td>
+			</tr>
+		</table>
+		<div>
+		<a name="paymentOptions"></a>
+
+{else}
+	<Br />
+	<table align="center" class="niceBox">
+		<tr>
+			<th style="padding:0px 10px">No products in your order manifest</th>
+		</tr>
+		<tr>
+			<td style="margin:20px;padding:20px;"><a href="{$config.secure.cart}">Visit our shopping cart!</a></td>
+		</tr>
+	</table>
+	<Br />
+{/if}

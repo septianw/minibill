@@ -1,0 +1,17 @@
+<div style="background:#EFEFEF;width:500px;margin:auto;text-align:center;">
+<div class="tlCorner"></div><div class="trCorner"></div>
+		{$item.name}<br />
+
+	<div class="{$question.error|default:q_caption}">
+		<blockquote style="margin-bottom:0px;">
+		{if $question.q_isRequired == 'yes'}<sub style="color:red">&raquo; An answer to this question is required</sub><br />{/if}
+			<b>{$question.q_caption}</b>
+		</blockquote>
+	</div>
+
+    {if $question.error}
+	<div>
+		<span style="border:1px solid black;color:white;padding:0px 10px 0px 10px;background:red;width:100%;font-weight:bold">{$question.q_errortext}</span><br />
+	</div>
+    {/if}
+	<div id="questionInner" style="padding:10px;text-align:left;">

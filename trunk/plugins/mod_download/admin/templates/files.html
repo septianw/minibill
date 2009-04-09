@@ -1,0 +1,91 @@
+{literal}
+<script>
+function renFile(desc,id)
+{
+	newdesc = prompt('Rename this file:',desc);
+	if (newdesc != desc)
+	{
+		document.location.href='index.php?action=renFile&file_id='+id+'&name='+escape(newdesc);
+	}
+}
+
+function changeDesc(desc,id)
+{
+	newdesc = prompt('Change this description:',desc);
+	if (newdesc != desc)
+	{
+		document.location.href='index.php?action=changeDesc&file_id='+id+'&description='+escape(newdesc);
+	}
+}
+
+</script>
+{/literal}
+<table cellpadding="3" width="100%">	
+	<form action="index.php" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="action" value="upload">
+	<tr>
+		<th colspan="2">Upload New File(s)</b></td>
+	<tr>
+		<td><b>Description</b></td>
+		<td><input type="text" name="description" size="50" maxlength="255"></b></td>
+	</tr>
+	<tr>
+		<td><b>Tie to Product</b></td>
+		<td>
+		<select name="product_id">
+		{html_options options=$products}
+		</select>
+		</b></td>
+	</tr>
+	<tr>
+		<td><b>File Name</b></td>
+		<td><input type="file" name="file" size="40"></b></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right"><input class="btn" type="submit" value="Upload"></td>
+	</tr>
+	</form>
+</table>
+<br />
+
+{if $files}
+<table cellpadding="3" border="0" width="100%">	
+	<tr><th colspan="99">FILE LIST</th></tr>
+
+<form action="index.php" method="POST">
+<input type="hidden" name="action" value="saveFiles">
+	{foreach from=$files item=file}
+	<tr {if $file.hidden}style="background:#CD0000;color:white"{/if}>
+		<td>
+		<a href="javaScript:confirmAction('index.php?action=delFile&file_id={$file.file_id}','Delete this file: {$file.name|addslashes}?')"><img src="../img/trash.gif" border="0" align="absmiddle"></a> 
+		<b>File Name</b></td>
+
+		<td><input type="text" name="file[{$file.file_id}][name]" value="{$file.name|htmlentities}" size="30"> {$file.size} {$file.fdate} <b>DLs</b> {$file.times_downloaded}</td>
+		<td>
+		<select name="file[{$file.file_id}][product_id]">
+		{html_options options=$products selected=$file.product_id}
+		</select>
+		<td align="right">
+			{if !$file.hidden}
+				<a href="index.php?action=hideFile&file_id={$file.file_id}" title="Hides from download, does not delete.">[HIDE]</a>
+			{else}
+				<a href="index.php?action=hideFile&file_id={$file.file_id}" title="Show hide for download.">[SHOW]</a>
+			{/if}
+		</td>
+	</tr>
+	<tr>
+		<td valign="top"><b>Description</b></td>
+		<td colspan="4"><textarea cols="80" rows="2" style="width:100%" name="file[{$file.file_id}][description]">{$file.description}</textarea></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right"><input type="submit" value="Update File" class="btn"></td>
+	</tr>
+	<tr>
+		<td colspan="100"></td>
+	</tr>
+	{/foreach}
+</form>
+</table>
+{else}
+<h2>No Files.</h2>
+{/if}

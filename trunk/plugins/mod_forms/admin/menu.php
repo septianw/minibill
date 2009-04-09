@@ -1,0 +1,5 @@
+<?php 
+
+$menuitem['forms'] = 'FORMS';
+
+?>

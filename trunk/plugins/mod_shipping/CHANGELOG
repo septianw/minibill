@@ -1,0 +1,2 @@
+alter table mod_shipping_data drop index tracking_no;
+alter table mod_shipping_data add index(tracking_no);

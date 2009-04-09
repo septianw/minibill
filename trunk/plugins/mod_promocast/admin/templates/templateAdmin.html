@@ -1,0 +1,81 @@
+{literal}
+<script>
+
+function showCats(id)	
+{
+	if (id)
+	{
+		if (document.getElementById('cats_'+id).style.display  == "block")
+		{
+			document.getElementById('cats_'+id).style.display="none";
+		}
+		else
+		{
+			document.getElementById('cats_'+id).style.display="block";
+		}
+	}
+}
+
+</script>
+{/literal}
+
+<h2>PromoCast Template Administration</h2>
+<a href="index.php?page=newmail">Edit Template Heirarchy</a>
+<form name="category" method="POST" action="index.php">
+<input type="hidden" value="newCat" name="action">
+New Top Level Category: <input type="text" name="cat[title]"><input type="submit" value="New" class="btn">
+</form>
+{if $cats}
+<table>
+	<tr>
+		<th>Category</th>
+		<th width="100">ID</th>
+		<th width="100"># TPLS</th>
+		<th></th>
+	</tr>
+	{foreach from=$cats key=catId item=cat}
+	<tr style="border-top:2px solid #CDCDCD">
+		<td ><a href="javaScript:showCats({$catId})">{$cats[$catId].title}</a></td>
+		<td>{$catId}</td>
+		<td align="center">{$cats[$catId].count}</td>
+		<td><a href="#" onClick="confirmAction('index.php?action=delCat&id={$catId}','Delete this category and ALL {$cats[$catId].count} templates?')"><img src="../img/trash.gif"></a></td>
+	</tr>
+	<tr>
+		<td colspan="3">
+		<form method="POST" action="index.php">
+		<input type="hidden" name="action" value="setTplStatus">
+		<input type="hidden" name="id" value="{$catId}">
+{if $cats[$catId].count}
+		<table id="cats_{$catId}" style="display:none;margin-left:20px;">
+		<tr>
+			<th>Templates for {$cats[$catId].title}</th>
+			<th>Active</th>
+			<th></th>
+		</tr>
+		{foreach from=$cats[$catId].info item=info}
+		<tr>
+			<td><a href="index.php?page=viewTemplate&id={$info.id}">{$info.title}</a></td>
+			<td align="right">
+				<select name="tpl[{$info.id}][active]" onChange="this.form.submit()">	
+					<option value="1" {if $info.active}SELECTED{/if}>Yes</option>
+					<option value="0" {if !$info.active}SELECTED{/if}>No</option>
+				</select>
+			</td>
+			<td><a href="#" onClick="confirmAction('index.php?action=delTpl&id={$info.id}','Delete this template?')"><img src="../img/trash.gif"></a></td>
+		</tr>
+		{/foreach}
+		</table>
+{/if}
+		</form>
+		<a href="index.php?page=newPromoTemplate&id={$catId}">&raquo; New Template in {$cats[$catId].title}</a>
+	</tr>
+	{/foreach}
+</table>
+{literal}
+<script>
+	showCats({/literal}{$smarty.get.id}{literal});
+</script>
+{/literal}
+{else}
+	<h3>No categories or templates</h3>
+{/if}

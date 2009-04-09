@@ -1,0 +1,28 @@
+<chart>
+<chart_type>line</chart_type>
+<chart_border top_thickness="0" bottom_thickness="4" left_thickness="4" right_thickness="4" color="#CDCDCD" />
+<chart_data>
+      <row>
+         <null/>
+         <string>Sun</string>
+         <string>Mon</string>
+         <string>Tue</string>
+         <string>Wed</string>
+         <string>Thu</string>
+         <string>Fri</string>
+         <string>Sat</string>
+      </row>
+      <row>
+         <string>Sales: {$thisWeekStart} - {$thisWeekEnd}</string>
+{foreach from=$thisWeekData item=day}
+         {$day}
+{/foreach}
+      </row>
+      <row>
+         <string>Sales: {$lastWeekStart} - {$lastWeekEnd}</string>
+{foreach from=$lastWeekData item=day}
+         {$day}
+{/foreach}
+      </row>
+   </chart_data>
+</chart>

@@ -1,0 +1,19 @@
+{if $invoices}
+<table width="500">
+	<tr>
+		<th>Invoice ID</th>
+		<th>Amount</th>
+		<th>Order Date</th>
+	</tr>
+	{foreach from=$invoices item=invoice}
+	<tr style="background:{cycle values="#EFEFEF,#FFFFFF"}">
+		<td><a href="index.php?action=printInvoice&uniq_id={$invoice.uniq_id}">{$invoice.uniq_id}</a></td>
+		</td>
+		<td align="right">{$config.currency.char}{$invoice.totals.grand_total} {$config.currency.code}</td>
+		<td align="center">{$invoice.totals.date_purchased}</td>
+	</tr>
+	{/foreach}
+</table>
+{else}
+	<h2 align="center">No invoices available.</h2>
+{/if}

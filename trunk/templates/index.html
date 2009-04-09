@@ -1,0 +1,12 @@
+{if $prods}
+	{include file="orderform.html"}
+{else}
+<table align="center" border=0>
+	<tr>
+		<td valign="top">
+			{include file="login.html"}	
+			If you are having difficulties logging in to your account:  (<a href="mailto:{$config.help.support_email}">{$config.help.support_email}</a>)
+		</td>
+	</tr>
+</table>
+{/if}

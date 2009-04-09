@@ -1,0 +1,48 @@
+<table width="100%">
+	<form method="post" action="index.php">
+	<input type="hidden" name="action" value="newInterface">
+	<tr>
+		<th>New Interfacing Company</th>
+		<th colspan="2">Generated Security Key</th>
+	</tr>
+	<tr>
+		<td valign="top">
+			<input type="text" name="interface[company]" size="32">
+		</td>
+		<td>
+			<input type="text" name="interface[remote_key]" value="{$randMD5}" size="32"> 
+			<br /><sup>Key can be anything up to 32 chars long</sup>
+		</td>
+		<td>
+			<input type="submit" value="Add" class="btn">
+		</td>
+	</tr>
+	</form>
+</table>
+
+<br />
+<table width="100%">
+	<tr>
+		<th>Company</th>
+		<th>Security Key</th>
+		<th>Hits</th>
+	</tr>
+	{foreach from=$interfaces item=if}
+	<tr>
+		<td><a href="javascript:confirmAction('index.php?action=delInterface&id={$if.id}','Delete Interface {$if.company}')"><img src="../img/trash.gif" align="absmiddle" border="0"></a> {$if.company}</td>
+		<td>{$if.remote_key}</td>
+		<td align="right">{$if.hits|number_format}</td>
+	</tr>
+	{if $if.prods}
+	<tr>
+		<td colspan="3">
+		<sup style="margin-left:10px">
+	{foreach from=$if.prods item=pr}
+		{$pr.title} -
+	{/foreach}
+		</sup>
+	</tr>
+	{/if}
+
+	{/foreach}
+</table>

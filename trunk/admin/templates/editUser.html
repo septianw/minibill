@@ -1,0 +1,19 @@
+<form action="index.php" method="POST">
+<input type="hidden" name="action" value="saveUser">
+<input type="hidden" name="user_id" value="{$smarty.get.id}">
+{include file="loadPlugins.html" pos="topForm" admdir="admin/"}
+<table cellpadding="3" width="100%">
+<tr>
+	<td width="50%">
+		{include file="loadPlugins.html" pos="aboveLeftSide" admdir="admin/"}
+		{include file="myinfo_billingInfo.html"}
+		{include file="loadPlugins.html" pos="belowLeftSide" admdir="admin/"}
+	</td>
+	<td valign="top" width="50%">
+		{include file="loadPlugins.html" pos="aboveRightSide" admdir="admin/"}
+		{include file="myinfo_cardonfile.html"}
+		{include file="loadPlugins.html" pos="belowRightSide" admdir="admin/"}
+	</td>
+</tr>
+</table>
+{include file="loadPlugins.html" pos="bottomForm" admdir="admin/"}

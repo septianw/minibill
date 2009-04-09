@@ -1,0 +1,17 @@
+{if $prod.forms}
+<blockquote>
+	{foreach from=$prod.forms item=form}
+	{$form.title|ucwords}
+	<ol>
+		{foreach from=$form.answers item=answer}
+		<b>{$answer.title}</b>
+		<ul>
+			{foreach from=$answer.answers item=a}
+			<li>{$a.question|strip_tags:"br"} {if $a.score > 0} add {$config.currency.char}{$a.score|number_format:2}{/if}</li>
+			{/foreach}
+		</ul>
+		{/foreach}
+	</ol>
+	{/foreach}
+</blockquote>
+{/if}

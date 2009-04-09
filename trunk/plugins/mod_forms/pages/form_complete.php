@@ -1,0 +1,5 @@
+<?php
+
+$hijackTemplate = 1;
+
+?>

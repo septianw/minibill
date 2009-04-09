@@ -1,0 +1,16 @@
+<form name="manualShip" method="post" action="index.php">
+<input type="hidden" name="action" value="updateTrackingNumber">
+<input type="hidden" name="ship[uniq_id]" value="{$orders[0].uniq_id}">
+<input type="hidden" name="ship[user_id]" value="{$orders[0].user_id}">
+<input type="hidden" name="ship[shipper]" value="{$config.company.name}">
+<table>
+	<tr>
+		<th>Shipment Tracking Number</th>
+	</tr>
+	<tr>
+		<td>
+			<input type="text" name="ship[tracking_no]"><input class="btn" type="submit" value="Add">
+		</td>
+	</tr>
+</table>
+</form>

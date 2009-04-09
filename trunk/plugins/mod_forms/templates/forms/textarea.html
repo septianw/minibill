@@ -1,0 +1,6 @@
+<div>
+	{foreach from=$values.values item=q}
+	{$q.text}
+	<textarea name="answers[{$question.id}][]" rows="{$question.q_height}" cols="{$question.q_width}" style="{$style}">{$q.value}</textarea> 
+	{/foreach}
+</div>

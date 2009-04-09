@@ -1,0 +1,30 @@
+<h2>Match your data fields</h2>
+<form name="load" method="POST" action="index.php">
+<input type="hidden" value="loadCsv" name="action">
+<input type="hidden" name="file" value="{$smarty.get.file}">
+
+<table align="center" width="400">
+	<tr>
+		<td><b>Product Category:</b></td>
+		<td><input type="text" name="title"></td>
+	</tr>
+	<tr>
+		<th>Your Data</th>
+		<th>Database</th>
+	</tr>
+	{foreach from=$fields key=fkey item=fvalue}
+	<tr>
+		<td>{$fvalue}</td>
+		<td>
+			<select name="field[{$fkey}]">
+			{foreach from=$cols item=cvalue key=ckey}
+			<option value="{$ckey}" {if $cvalue == $fvalue}SELECTED{/if} >{$cvalue}</option>
+			{/foreach}
+			</select>
+		</td>
+	</tr>
+	{/foreach}
+	<tr>
+		<td colspan="2" align="right"><input type="submit" value="Load &gt;&gt;"></td>
+	</tr>
+</table>

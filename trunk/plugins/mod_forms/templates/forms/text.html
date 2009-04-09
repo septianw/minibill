@@ -1,0 +1,6 @@
+<div>
+	{foreach from=$values.values item=q}
+	{$q.text}<br />
+	<input size="{$question.q_width|default:30}" style="{$style}" type="text" value="{$q.value}" name="answers[{$question.id}][]"><br />
+	{/foreach}
+</div>

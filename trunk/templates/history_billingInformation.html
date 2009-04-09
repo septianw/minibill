@@ -1,0 +1,53 @@
+<table cellpadding="3">
+	<tr>
+		<th colspan="2">Billing Information</th>
+	</tr>
+	<tr>
+		<td><b>Your Email Address</b></td>
+		<td >{$user.email}</td>
+	</tr>
+	<tr>
+		<td><b>Your Password</b></td>
+		<td >{$user.password}</td>
+	</tr>
+	<tr>
+		<td><b>Billing First Name</b></td>
+		<td >{$user.firstname}</td>
+	</tr>
+	<tr>
+		<td><b>Billing Last Name</b></td>
+		<td >{$user.lastname}</td>
+	</tr>
+	<tr>
+		<td><b>Contact Phone</b></td>
+		<td >{$user.phone}</td>
+	</tr>
+	<tr>
+		<td><b>Billing Address</b></td>
+		<td >{$user.address}</td>
+	</tr>
+	<tr>
+		<td><b>Billing City</b></td>
+		<td >{$user.city}</td>
+	</tr>
+	<tr>
+		<td><b>Billing State</b></td>
+		<td >{$user.state}</td>
+	</tr>
+	<tr>
+		<td><b>Billing Zipcode</b></td>
+		<td >{$user.zipcode}</td>
+	</tr>
+	<tr>
+		<td><b>Billing Country</b></td>
+		<td >{$user.country}</td>
+	</tr>
+	<tr>
+		<td><b>Credit Card</b></td>
+		<td >xxxxxxxxxxxx{$user.safecard}</td>
+	</tr>
+	<tr>
+		<td><b>Card Expires</b></td>
+		<td >{$user.cc_exp_mo} / {$user.cc_exp_yr}</td>
+	</tr>
+</table>

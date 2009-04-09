@@ -1,0 +1,26 @@
+<h2>Shipping data</h2>
+<h3>{$user.firstName} {$user.lastName} - {$sdata.ship_id}: {$sdata.shipped|date_format}</h3>
+<form name="shippingstuff" method="post" action="index.php">
+<input type="hidden" name="action" value="saveShipInfo">
+<input type="hidden" name="sdata[ship_id]" value="{$sdata.ship_id}">
+<table>
+	<tr>
+		<td><b>Tracking #</b></td>
+		<td><input type="text" name="sdata[tracking_no]" value="{$sdata.tracking_no}">
+	</tr>
+	<tr>
+		<td><b>Shipper (UPS/FEDEX etc.)</b><br /><sup>Optional</sup></td>
+		<td><input type="text" name="sdata[shipper]" value="{$sdata.shipper}">
+	</tr>
+	<tr>
+		<td><b>Date Packaged</b><Br /><sup>Optional</sup></td>
+		<td><input type="text" name="sdata[packaged]" value="{$sdata.packaged}">
+	</tr>
+	<tr>
+		<td><b>Date Shipped</b><Br /><sup>Optional, will auto-populate</sup></td>
+		<td><input type="text" name="sdata[shipped]" value="{$sdata.shipped}">
+	</tr>
+	<tr>
+		<td colspan="2" align="right"><button type="submit">Save</button></td>
+	</tr>
+</table>

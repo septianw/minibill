@@ -1,0 +1,23 @@
+{if !$LOGGED_IN}
+<table width="400" align="center" class="niceBox">
+<form action="index.php" method="POST">
+<input type="hidden" name="action" value="login">
+	<tr>
+		<th colspan="2">ADMINISTRATOR LOGIN</th>
+	</tr>
+    <tr>
+        <td><b>Admin</b></td>
+        <td class="dark"><input type="text" name="mbadmin"></td>
+    </tr>
+    <tr>
+        <td><b>Admin Password</b></td>
+        <td class="dark"><input type="password" name="mbpass"></td>
+    </tr>
+	<tr>
+		<td colspan="2" align="right"><input class="btn" type="submit" value="Login" style="margin:20px;"></td>
+	</tr>
+</form>
+</table>
+{else}
+<h2 align="center">Welcome :: Admin</h2>
+{/if}

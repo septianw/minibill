@@ -1,0 +1,68 @@
+<table width="100%">
+	<tr>
+		<th colspan="2">PromoCast Information</th>
+	</tr>
+	<tr>
+		<td><b>Promo-Credits</b></td>
+		<td><input type="text" value="{$promoUser.promoCredits}"name="promoCredits"></td>
+	</tr>
+	<tr>
+		<td><b>Email Credits</b></td>
+		<td><input type="text" value="{$promoUser.credits}"name="credits"></td>
+	</tr>
+	<tr>
+		<td><b>Email Adress</b></td>
+		<td><input type="text" value="{$promoUser.email}"name="promoUser[email]"></td>
+	</tr>
+
+	<tr>
+		<td><b>Password</b></td>
+		<td><input type="text" value="{$promoUser.password}"name="promoUser[password]"></td>
+	</tr>
+	<tr>
+		<td><b>First Name</b></td>
+		<td><input type="text" value="{$promoUser.firstname}"name="promoUser[firstname]"></td>
+	</tr>
+
+	<tr>
+		<td><b>Last Name</b></td>
+		<td><input type="text" value="{$promoUser.lastname}"name="promoUser[lastname]"></td>
+	</tr>
+	<tr>
+		<td><b>Phone Number</b></td>
+		<td><input type="text" value="{$promoUser.phone}"name="promoUser[phone]"></td>
+	</tr>
+
+	<tr>
+		<td><b>Address</b></td>
+		<td><input type="text" value="{$promoUser.address}"name="promoUser[address]"></td>
+	</tr>
+	<tr>
+		<td><b>City</b></td>
+		<td><input type="text" value="{$promoUser.city}"name="promoUser[city]"></td>
+	</tr>
+	<tr>
+		<td><b>State</b></td>
+		<td>
+			<select name="promoUser[state]">
+			{state_select selected=$promoUser.state}
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Zip Code</b></td>
+		<td><input type="text" value="{$promoUser.zipcode}"name="promoUser[zipcode]"></td>
+	</tr>
+
+	<tr>
+		<td><b>Country</b></td>
+		<td>
+			<select name="promoUser[country]">
+			{country_select selected=$promoUser.country}
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center"><input type="submit" value="Update" class="btn"></td>
+	</tr>
+</table>

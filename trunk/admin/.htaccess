@@ -1,0 +1,4 @@
+# Makes this format search engine friendly
+RewriteEngine On
+
+RewriteRule ^/(.*)\.html$ index.php?page=$1 [R,QSA]

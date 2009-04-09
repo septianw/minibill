@@ -1,0 +1,32 @@
+{if $products}
+<table width="100%">
+	<tr>
+		<th align="center">ID</th>
+		<th>TITLE</th>
+		<th align="center">PRICE</th>
+		<th align="center"># IN STOCK</th>
+		<th align="center">RECURRING</th>
+		<th align="center">CATEGORY</th>
+		<th></th>
+	</tr>
+{foreach from=$products item=p}
+	<tr style="background:#EFEFEF">
+		<td align="center">{$p.id}</td>
+		<td><a href="index.php?page=editProduct&id={$p.id}">{$p.title}</a></td>
+		<td align="right">{$p.price}</td>
+		<td align="center">{if $p.stock == -1}*{else}{$p.stock}{/if}</td>
+		<td align="center">{$p.is_recurring}</td>
+		<td><a href="index.php?page=editCategory&id={$p.category_id}">{$p.category.title}</a></td>
+		<td><a href="javascript:confirmAction('index.php?action=delProduct&id={$p.id}','Delete this product?');"><img src="../img/trash.gif" border="0" align="absmiddle"></a></td>
+	</tr>
+	{if $p.item_desc}
+	<tr>
+		<td></td><td colspan=5><i>{$p.item_desc}</i></td>
+	</tr>
+	{/if}
+{/foreach}
+</table>
+{else}
+	<h1>No products found -</h1>
+	<a href="index.php?page=addProduct"><h3>Click here to create a New Product</h3></a>
+{/if}

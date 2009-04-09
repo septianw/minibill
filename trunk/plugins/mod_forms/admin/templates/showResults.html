@@ -1,0 +1,12 @@
+<table id="list">
+	<tr>
+		<th>Form</th><th>Client</th><th>Price</th><th>Date</th>
+	</tr>
+	{foreach from=$info item=i}
+	<tr bgcolor="{cycle values="#FFFFFF,#CDCDCD"}">
+		<td>{$i.form_name}</td><td>{$i.name} - {$i.email}</td><td align="center">{$i.price}</td><td>{$i.answer_date}</td><td><a href="index.php?page=showAnswers&client_id={$i.client_id}&form_id={$i.form_id}">[ANSWERS]</a> <a href="index.php?action=delAnswer&client_id={$i.client_id}&form_id={$i.form_id}">[DEL]</a></td>
+	</tr>
+	{/foreach}
+</table>
+	
+

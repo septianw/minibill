@@ -1,0 +1,5 @@
+################################################################
+# Dont forget to create a 0 byte file called "lastChecked.txt" #
+# in the home folder of the user running this program.         #
+################################################################
+*/5 * * * * /usr/bin/php -q /full/path/to/minibill/plugins/mod_shipping/shipStatus.cron.php /full/path/to/minibill/install/

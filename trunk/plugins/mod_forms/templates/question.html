@@ -1,0 +1,30 @@
+<table class="editForm" align="center" border=0 width="760">
+<form action="index.php" method="POST">
+<input type="hidden" name="action" value="newClient">
+<input type="hidden" name="form_id" value="{$form.id}">
+	<tr>
+		<td class="heading">{$form.form_heading}</td>
+	</tr>
+	<tr>
+		<th>
+{$form.form_blurb}
+		</th>
+	</tr>
+
+		<tr class="{$error.email}">
+			<td align="right">
+			<div>
+			Enter your email address here to get started<br />
+				<input type="text" name="init[email]" style="width:250px">
+				<input class="btn" type="submit" value="&laquo; GET STARTED! &raquo;">
+			</div>
+				</th>
+			</td>
+		</tr>
+	</table>
+</form>
+{literal}
+<script>
+	document.forms[0].elements[2].focus();
+</script>
+{/literal}

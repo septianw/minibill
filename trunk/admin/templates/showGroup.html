@@ -1,0 +1,33 @@
+<table class="niceBox" style="width:100%">
+	<tr>
+		<th>ORDER</th>
+		<th>PRODUCT</th>
+		<th style="text-align:center">AMOUNT</th>
+		<th>PURCHASED</th>
+		<th>BILLED</th>
+		<th>DUE</th>
+		<th style="text-align:center">RECURS</th>
+		<th style="text-align:center">CONTRACT</th>
+		<th></th>
+	</tr>
+	{foreach from=$orders item=order}
+	<tr>
+		<td><a  title="Edit this order item" href="index.php?page=editOrder&order_id={$order.order_id}">[{$order.order_id}]</a></td>
+		<td><a title="Edit this product" href="index.php?page=editProduct&id={$order.product_id}">[{$order.title}]</a> {if $order.quantity > 1} x {$order.quantity} @ {$order.amount}{/if}</td>
+		<td style="text-align:center">{$order.grand_total}</td>
+		<td>{$order.date_purchased|date_format}</td>
+		<td>{$order.last_billed|date_format}</td>
+		<td>{$order.payment_due|date_format}</td>
+		<td style="text-align:center">{$order.recurring}</td>
+		<td style="text-align:center">{$order.contract}</td>
+		<td style="text-align:center">
+		<a href="javascript:confirmAction('index.php?action=delOrder&order_id={$order.order_id}&uniq_id={$order.uniq_id}','Delete this order:\n{$order.title|htmlentities}');"><img src="../img/trash.gif" border="0" align="absmiddle"></a>
+		</td>
+	</tr>
+	{/foreach}
+	<tr>
+		<td colspan="2" style="text-align:right"><b>{$grand_quantity} items:</b></td>
+		<td style="text-align:center"><b>{$grand_total}</b></td>
+	</tr>
+</table>
+

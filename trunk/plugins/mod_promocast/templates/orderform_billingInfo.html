@@ -1,0 +1,104 @@
+{literal}
+<script>
+
+function do_toggle(id)
+{
+	toggle(id);
+	toggle('newLogin');
+	if (document.orderform.login.value == 'login') 
+	{
+		document.orderform.login.value='';
+	}
+	else 
+	{
+		document.orderform.login.value='login';
+	}
+}
+
+</script>
+{/literal}
+
+<table cellpadding="3" width="100%">
+    <tr>
+        <th colspan="2">Billing And Account Information</b></td>
+    </tr>
+    <tr>
+        <td><b>Your Email Address</b></td>
+        <td>
+			{$email}
+		</td>
+    </tr>
+    <tr>
+        <td><b>Password</b></td>
+        <td>
+			**********
+		</td>
+    </tr>
+	<input type="hidden" name="user[email]" value="{$email}">
+	<input type="hidden" name="user[password]" value="{$password}">
+		{if $id && $uniq_id}
+			<input type="hidden" name="user[id]" value="{$id}">
+			<input type="hidden" name="uniq_id" value="{$uniq_id}">
+		{/if}
+	</tr>
+</table>
+
+<table width="100%" cellpadding="3" id="billing">
+	<tr>
+		<th colspan="2">Verify Your Billing Details</th>
+	</tr>
+    <tr>
+        <td valign="top"><b>First Name</b></td>
+        <td><input type="text" class="{$error_firstname}" name="user[firstname]" maxlength="255" size="30" value="{$firstname}">
+			<br /><sup>(As it appears on your credit card)</sup></b>
+		</td>
+    </tr>
+    <tr>
+        <td><b>Last Name</b></td>
+        <td><input type="text" class="{$error_lastname}" name="user[lastname]" maxlength="255" size="30" value="{$lastname}">
+			<br /><sup>(As it appears on your credit card)</sup>
+		</td>
+    </tr>
+    <tr>
+        <td><b>Address</b></td>
+        <td>
+			<input type="text" class="{$error_address}" name="user[address]" maxlength="255" size="30" value="{$address}" >
+		</td>
+    </tr>
+    <tr>
+        <td><b>City</b></td>
+        <td><input type="text"  class="{$error_city}" name="user[city]" maxlength="255" size="30" value="{$city}"></td>
+    </tr>
+    <tr>
+        <td><b>State</b></td>
+        <td>
+			<select name="user[state]" class="{$error_state}">
+			<option value="">[Your State]</option>
+			{state_select selected=$state}
+			</select>
+			<!-- <input type="text" class="{$error_state}"  name="user[state]" maxlength="255" size="30" value="{$state}"> --></td>
+    </tr>
+    <tr>
+        <td><b>Zipcode</b></td>
+        <td><input type="text" class="{$error_zipcode}" name="user[zipcode]" maxlength="255" size="30" value="{$zipcode}"></td>
+    </tr>
+    <tr>
+        <td><b>Country</b></td>
+        <td>
+			<select name="user[country]" class="{$error_country}">
+			<option value="">[Your Country]</option>
+			{country_select selected=$country}
+			</select>
+			<!-- <input type="text" class="{$error_country}" name="user[country]" maxlength="255" size="30" value="{$country}">-->
+		</td>
+    </tr>
+    <tr>
+        <td><b>Contact Phone</b></td>
+        <td><input type="text" class="{$error_phone}"  name="user[phone]" maxlength="255" size="30" value="{$phone}"></td>
+    </tr>
+</table>
+
+<script>
+	newUser = '{$newUser}';
+	if (newUser) do_toggle('billing');
+</script>

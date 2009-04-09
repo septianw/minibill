@@ -1,0 +1,56 @@
+<table>
+<form action="index.php">
+<input type="hidden" name="action" value="saveProduct">
+	<tr>
+		<th colspan="2">Product Information</th>
+	</tr>
+{if $prod.id}<input type="hidden" name="prod[id]" value="{$prod.id}">{/if}
+	<tr>
+		<td>Title</td>
+		<td><input type="text" value="{$prod.title}" name="prod[title]"></td>
+	</tr>
+	<tr>
+		<td>Description</td>
+		<td><textarea rows="7" cols="30" name="prod[item_desc]">{$prod.item_desc}</textarea></td>
+	</tr>
+	<tr>
+		<td>Category</td>
+		<td>
+			<select name="prod[category_id]">
+			{foreach from=$cats item=cat}
+				<option value="{$cat.id}" {if $cat.selected}SELECTED{/if}>{$cat.title}</option>
+			{/foreach}
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>Price</td>
+		<td><input type="text" value="{$prod.price}" name="prod[price]" size="6" maxlength="6"></td>
+	</tr>
+	<tr>
+		<td>Number in Stock
+		</td>
+		<td><input type="text" value="{$prod.stock}" name="prod[stock]"><br /><sub>-1 = infinite supply</sub>
+		</td>
+	</tr>
+	<tr>
+		<td>Scan Code Digits<Br /><sub>Aka Barcode</sub>
+		</td>
+			<td><input type="text" value="{$prod.item_code}" name="prod[item_code]"></td>
+		</td>
+	</tr>
+	<tr>
+		<td>Recurring</td>
+		<td>
+			<select name="prod[is_recurring]">
+			{foreach from=$recurring item=recur}
+				<option {if $recur.selected == 1}SELECTED{/if}>{$recur.type}</option>
+			{/foreach}
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align:right"><input type="submit" value="Save" class="btn"></td>
+	</tr>
+</table>
+</form>

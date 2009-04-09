@@ -1,0 +1,67 @@
+<script language="javascript" type="text/javascript" src="../plugins/mod_promocast/js/tiny_mce/tiny_mce.js"></script>
+<script language="javascript" type="text/javascript">
+{literal}
+tinyMCE.init({
+	theme: "advanced",
+	mode : "textareas",
+	editor_selector : "htmlArea",
+	plugins:"table",
+	theme_advanced_buttons3_add : "tablecontrols",
+	theme_advanced_path_location : "bottom",
+	theme_advanced_buttons1_add : "fontselect,fontsizeselect",
+	theme_advanced_toolbar_location: "top",
+	external_image_list_url : "index.php?action=fileList&ext=.js",
+    // Delete all buttons
+    //theme_advanced_disable: "separator, bold, italic, underline, strikethrough, justifyleft, justifycenter, justifyright, justifyfull, styleselect, formatselect, bullist, numlist, outdent, indent, undo, redo, link, unlink, anchor, image, cleanup, help, code, hr, removeformat, visualaid, sub, sup, charmap",
+
+    // Add chosen buttons
+//    theme_advanced_buttons1_add: "fontselect,fontsizeselect, cleanup, help",
+    //theme_advanced_buttons2_add: "bold, italic, underline, separator, justifyleft, justifycenter, justifyright, separator, bullist, numlist, separator, outdent, indent, separator, code, image,link,unlink",
+	apply_source_formatting : true,
+	remove_linebreaks : false,
+	force_br_newlines : true,
+	force_p_newlines : false,
+	remove_script_host : true,
+	relative_urls : true
+
+});
+
+</script>
+
+{/literal}
+
+<form name="templateEdit" method="post" action="index.php">
+<input type="hidden" name="action" value="savePromoTemplate">
+{if $tpl.id}
+<input type="hidden" name="tpl[id]" value="{$tpl.id}">
+{/if}
+<table width="500">
+	<tr>
+		<th>TEMPLATE PREVIEW</th>
+	</tr>
+	<tr>
+		<td>
+			<b style="width:70px;display:block;float:left">Category:</b><select name="tpl[cat_id]">
+			{foreach from=$cats item=cat}
+			<option {if $cat.id == $tpl.cat_id || $smarty.get.id==$cat.id}SELECTED{/if} value="{$cat.id}">{$cat.title}</option>
+			{/foreach}
+			</select><Br />
+			<b style="width:70px;display:block;float:left">User:</b>
+			<select name="tpl[user_id]">
+			<option value="0000000000">All Users</option>
+			{foreach from=$users item=user}
+			<option {if $user.id == $tpl.user_id}SELECTED{/if} value="{$user.id}">{$user.company}</option>
+			{/foreach}
+			</select><Br />
+			<b style="width:70px;display:block;float:left">Title:</b>
+			<input type="text" name="tpl[title]" value="{$tpl.title}">
+			<div id="editor">
+			<textarea name="tpl[htmlContent]" rows="20" cols="80">{$tpl.htmlContent|stripslashes}</textarea>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td align="right"><input class="btn" type="submit" value="Save Template">
+	</tr>
+</table>
+</form>

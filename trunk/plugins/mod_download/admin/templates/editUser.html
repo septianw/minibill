@@ -1,0 +1,45 @@
+<table width="100%">
+	<tr>
+		<th>Name</th>
+		<th>Size</th>
+		<th># DL's</th>
+		<th>Last DL</th>
+		<th>Hide</th>
+	</tr>
+{if $userfiles}
+	{foreach from=$userfiles item=file}
+	<tr>
+		<td><b>{$file.name}</b></td>
+		<td>{$file.size}</td>
+		<td align="right">{$file.times_downloaded|number_format}</td>
+		<td align="center">{$file.last_downloaded}</td>
+		<td align="center"><input type="checkbox" onchange="" {if $file.activated == '0000-00-00'}CHECKED{/if}></td>
+	</tr>
+	{/foreach}
+{else}
+<tr>
+	<td colspan="5" align="center">No files assigned for this user to download</td>
+</tr>
+{/if}
+</table>
+
+{if $files}
+<table width="100%" style="margin-top:10px;overflow:auto;">
+	<tr>
+		<th>Available files</th>
+		<th>Date</th>
+		<th>Item Tie</th>
+		<th>Add</th>
+	</tr>
+	{foreach from=$files item=file}
+	<tr>
+		<td><b>{$file.name}</b></td>
+		<td>{$file.fdate}
+		<td>#{$file.product_id} - {$file.title}</td>
+		<td><input type="checkbox" onchange=""></td>
+	</tr>
+		<td colspan="4"><span style="margin-left:20px"><i>{$file.description}</i></span></td>
+	</tr>
+	{/foreach}
+</table>
+{/if}

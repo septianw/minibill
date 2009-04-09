@@ -1,0 +1,62 @@
+<table cellpadding="3" width="100%">
+<form name="search" method="POST">
+<input type="hidden" name="page" value="ledger">
+	<Tr>
+		<th colspan="2">Search Orders</th>
+	</tr>
+    <tr>
+        <td align="left"><select name="search[type]">
+            <option value="">Show Today</option>
+            <option {$SELETyesterday} value="yesterday">Yesterday's Orders</option>
+            <option {$SELECTall} value="all">Show All</option>
+            <option {$SELECTemail} value="email">Email</option>
+            <option {$SELECTname} value="name">Name</option>
+            <option {$SELECTdate} value="date">Date</option>
+            <option {$SELECTlast_billed} value="last_billed">Last Bill Date</option>
+			</select>
+			<input type="text" name="search[phrase]" size="20"><input type="submit" value="GO">
+		</td>
+    </tr>
+</form>
+</table>
+
+<br />
+{if $orders}
+<table cellpadding="3" width="100%">
+	<tr>
+		<th></th>
+		<th>NAME</th>
+		<th>EMAIL</th>
+		<th>TOTAL</th>
+		<th># ITEMS</th>
+		<th>ORIG.DATE</th>
+		<th>LAST BILL</th>
+		<th></th>
+	</tr>
+{foreach from=$orders item=order}
+	<tr style="background:{cycle values="#EDEDED,#FFFFFF"}">
+		<!-- <td><a title="Show order group detail" href="index.php?page=showGroup&uniq_id={$order.uniq_id}">{$order.uniq_id}</a></td> -->
+		<td style="text-align:right"><a title="Show all orders from this user" href="index.php?page=orderdetail&user_id={$order.user_id}">[{$order.user_id}]</a></td>
+		<td><a title="Edit user information" href="index.php?page=editUser&id={$order.user_id}">{$order.firstname} {$order.lastname}</a></td>
+		<td><a title="Send email to this user" href="mailto:{$order.email}">{$order.email}</a></td>
+		<td align="right">{$order.amount}</td>
+		<td align="center">{$order.quantity}</td>
+		<td align="center">{$order.date_purchased|date_format}</td>
+		<td align="center">{$order.last_billed|date_format}</td>
+		<td>
+			<a title="Delete orders in this order group" href="javascript:confirmAction('index.php?action=delGroup&uniq_id={$order.uniq_id}&backref=1','Delete this order group: {$order.uniq_id}');"><img src="../img/trash.gif" border="0" align="absmiddle"></a>
+			<a title="Edit orders in this order group" href="index.php?page=showGroup&uniq_id={$order.uniq_id}"><img src="../img/edit.gif" border="0" align="absmiddle"></a>{if $config.plugins.mod_shipping} <a href="index.php?page=addShipInfo&uniq_id={$order.uniq_id}">{if $order.is_shipped}<img src="../plugins/mod_shipping/img/is_shipped.png" title="TRK#:{$order.is_shipped}" align="absmiddle">{else}<img src="../plugins/mod_shipping/img/shipping.png" align="absmiddle" title="Add shipping information to this order">{/if}</a>{/if}{if $config.plugins.mod_pdfreceipt} <a href="index.php?page=showPDF&uniq_id={$order.uniq_id}&user_id={$order.user_id}"><img src="../plugins/mod_pdfreceipt/img/pdf_icon.gif" border="0" align="absmiddle"></a>{/if}
+		</td>
+	</tr>
+{/foreach}
+	<tr>
+		<td colspan=99></td>
+	</tr>
+	<tr>
+		<td colspan=3 style="text-align: right"><b>TOTAL</b></th>
+		<td style="text-align: right"><b>{$grand_total}</b></th>
+	</tr>
+</table>
+{else}
+<h2>No orders today</h2>
+{/if}

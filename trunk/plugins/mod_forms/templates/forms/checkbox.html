@@ -1,0 +1,5 @@
+<div>
+		{foreach from=$values.values item=q key=item}
+			<input type=checkbox style="{$style};{$width};{$height}" name="answers[{$question.id}][{$item}]" {$q.selected} value="{$q.value}"> {$q.text}
+		{/foreach}
+</div>

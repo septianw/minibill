@@ -1,0 +1,71 @@
+{if $shippingData}
+<table width="100%">
+	<tr>
+		<th>Order Details</th>
+		<th>Shipper</th>
+		<th>Tracking #</th>
+		<th>Packaged</th>
+		<th>Shipped</th>
+	</tr>
+	{foreach from=$shippingData item=sd}
+	<tr style="background:{cycle values="#EFEFEF,#FFFFFF"}">
+		<td><a href="index.php?page=shipStatus&uniq_id={$sd.uniq_id}">{$sd.uniq_id}</a></td>
+		<td>{$sd.shipper}</td>
+		<td>{if $sd.shipped != '0000-00-00 00:00:00'}{$sd.tracking_no}{/if}</td>
+		<td>{if $sd.packaged != '0000-00-00 00:00:00'}
+			<div style="text-align:center;100%;background:#00A000;color:#FFFFFF">{$sd.packaged}</div>
+			{else}<div style="text-align:center;width:100%;background:#A00000;color:#FFFFFF">PENDING</div>{/if}
+		</td>
+		<td>{if $sd.shipped != '0000-00-00 00:00:00'}
+			<div style="text-align:center;width:100%;background:#00A000;color:#FFFFFF">{$sd.shipped}</div>
+			{else}<div style="text-align:center;width:100%;background:#A00000;color:#FFFFFF">PENDING</div>{/if}
+		</td>
+	</tr>
+	{if $sd.order}
+		<tr>
+			<td colspan="5"><br />
+				{if $shipTo}
+				<table width="500" style="margin-left:20px;">
+					<tr>
+						<th>Order Shipping Destination</th>
+					</tr>
+					<tr>
+						<td>{$shipTo.firstname} {$shipTo.lastname}<br />
+						{$shipTo.address1} {$shipTo.address2}<br />
+						{$shipTo.city}, {$shipTo.state}<br />
+						{$shipTo.zipcode}<br />
+						{$shipTo.country}<br />
+						</td>
+					</tr>
+				</table>
+				{/if}
+				<table width="500" style="margin-left:20px;">
+					<tr>
+						<th>Items Ordered</th>
+						<th>Cost Ea.</th>
+						<th>Quantity</th>
+						<th>Total</th>
+					</tr>
+				{foreach from=$sd.order item=order}
+					<tr style="background:{cycle values="#EFEFEF,#FFFFFF"}">
+						<td>{$order.title}</td>
+						<td align="right">{$config.currency.char}{$order.amount}</td>
+						<td align="center">{$order.quantity}</td>
+						<td>{$config.currency.char}{$order.grand_total} {$config.currency.code}</td>
+					</tr>
+					<tr>
+						<td colspan="4"><sup><i>{$order.item_desc}</i></sup></td>
+					</tr>
+				{/foreach}
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5" style="height:20px;border-top:1px dotted #CDCDCD"></td>
+		</tr>
+	{/if}
+	{/foreach}
+</table>
+{else}
+	<h2 align="center">No shipping data</h2>
+{/if}

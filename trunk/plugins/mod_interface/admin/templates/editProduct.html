@@ -1,0 +1,27 @@
+<table>
+	<form method="POST" action="index.php">
+	<input type="hidden" name="action" value="saveInterface">
+	<input type="hidden" name="interface[id]" value="{$smarty.get.id}">
+	<tr>
+		<th colspan="2">External Interfacing</th>
+	</tr>
+	<tr>
+		<td><b>Remote Product ID</b></td>
+		<td><input type="text" size="12" value="{$interface.remote_prod_id}" name="interface[remote_prod_id]"></td>
+	</tr>
+	<tr>
+		<td><b>Remote Company</b></td>
+		<td>
+			<select name="interface[remote_key]">
+			<option value="">[Select One]</option>
+			{html_options options=$interfaces selected=$interface.remote_key}
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right">
+			<input type="submit" value="Update interface" class="btn">
+		</td>
+	</tr>
+	</form>
+</table>

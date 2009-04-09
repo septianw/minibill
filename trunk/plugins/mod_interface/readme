@@ -1,0 +1,30 @@
+
+POST VALUES
+---------------------
+action=setOrder
+
+key=<string:32>
+orderId=<string:255>
+
+prods[0][id]=<int:10>
+prods[0][quantity]=<int:10>
+prods[1][id]=<int:10>
+prods[1][quantity]=<int:10>
+prods[..][id]=<int:10>
+
+user[email]=<string:255>
+user[firstname]=<string:255>
+user[lastname]=<string:255>
+user[address]=<string:255>
+user[city]=<string:255>
+user[zipcode]=<string:255>
+
+// State and Country must be 2 digit 
+// iso code, e.g.: UT / US or BC / CA
+user[state]=<string:2>
+user[country]=<string:2>
+
+// optional - will auto-generate password.
+user[password]=<string:64>
+user[comments]=<string:255>
+

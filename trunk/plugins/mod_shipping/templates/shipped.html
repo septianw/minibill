@@ -1,0 +1,28 @@
+Dear {$user.firstname|ucfirst} {$user.lastname|ucfirst},<br />
+<blockquote>
+This is an email message letting you know that your order has successfully been processed and filled and 
+is ready to go!<br />
+You will receive a tracking number usually within 24 hours so you can track your order online.<br />
+</blockquote>
+Thank you for your order, and we hope that you will enjoy your products!
+
+	<table width="100%">
+		<tr>
+			<td><b>The status of your order #{$order_id}</b></td>
+			<td align="right"><b>SHIPPED</b></td>
+		</tr>
+	</table>
+
+	<table cellpadding="3" width="100%">
+		<tr>
+			<th>Items in package</th>
+		</tr>
+	{foreach from=$prods item=prod}
+		<tr style="background:{cycle values="#EFEFEF,#FFFFFF"}">
+			<td>{$prod.quantity} x <b>{$prod.title}</b></td>
+		</tr>
+	{/foreach}
+	</table>
+
+	If you wish to view the status of your order, update your account information, or cancel services you may have started with us, you may do so by logging in to your customer care center at {$config.secure.url} 
+	<h3><a href="{$config.secure.url}"><u>Click here</u></a> to log into your customer care center.</h3>

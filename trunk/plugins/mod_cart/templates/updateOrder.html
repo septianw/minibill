@@ -1,0 +1,101 @@
+{* This page is displayed before the final order form *}
+{if $prods && !$smarty.request.verified}
+{literal}
+<script language="javaScript">
+function removeItem(itemId)
+{
+	for(i = 0;i < document.update.length;i++)
+	{
+		varname = document.update.elements[i].name.split('[');
+		if (varname[1])
+		{
+			varname = varname[1].split(']');
+			thisId  = varname[0];	
+			if (thisId == itemId) 	
+			{ 
+				document.update.elements[i].value = 0;
+				document.update.submit();
+			}
+		}
+	}
+}
+	
+</script>
+{/literal}
+<div>
+	<form action="index.php" method="POST" name="update">
+	<input type="hidden" class="hidden" name="action" value="updateQuantity">
+	{if $smarty.get.order_id}
+	<input type="hidden" class="hidden" name="order_id" value="{$smarty.get.order_id}">
+	{/if}
+</div>
+
+<table cellpadding="3" align="center" width="720" border="0">
+	<tr>
+		<td colspan="2">
+			<!-- CHECKOUT -->
+			<table cellpadding="3" width="100%" class="niceBox">
+				<tr>
+					<th></th>
+					<th>ORDER LISTING</th>
+					<th width="70">QUANTITY</th>
+					<th align="center">PRICE</th>
+					<th align="center">CYCLE</th>
+					<th align="center">INVENTORY</th>
+				</tr>
+				{foreach from=$prods item=prod}
+				<tr>
+					<td align="center" valign="top"><a href="#{$prod.id}" onclick="javascript:removeItem({$prod.id})"><img src="img/trash.gif" border="0"></a></td>
+					<td>{$prod.title}
+					{include file="mod_forms.html"}	
+					</td>
+					<td align="right" valign="top"><input type="text" style="text-align:right" name="quantity[{$prod.id}]" value="{$prod.quantity}" size="4" class="editMe"></td>
+					<td align="right" valign="top">{$prod.price}</td>
+					<td align="center" valign="top">{$prod.is_recurring}</td>
+					<td align="center" valign="top">{if $prod.stock > 0}{$prod.stock}{elseif $prod.stock == -1}IN STOCK{else}<font color="red">SOLD OUT</font>{/if}</td>
+				</tr>
+				{/foreach}
+				
+				{include file="../../../templates/loadPlugins.html" pos="appendOrderForm"}
+				
+				<tr style="background:#EFEFEF">
+					<td colspan="2" align="right"><B>Grand Total:</b></td>
+					<td align="right"><b>{$smarty.session.total_items}</b></td>
+					<td align="right"><b>${$grand_total}</b></td>
+					<td colspan="2" align="right"><input type="submit" class="btn" value="Update Quantity"></td>
+				</tr>
+			</table>
+			<!-- END CHECKOUT -->
+		</td>
+		</form>
+	</tr>
+	<tr>
+		<td>
+{if !$config.company.nocart}
+                        <form action="index.php" method="post" name="keepshopping">
+                        <input type="hidden" class="hidden" name="action" value="keepShopping">                        <br /><input type="submit" value="&laquo; Keep Shopping" class="btn">
+                        </form>
+{/if}
+		</td>
+		<td align="right">
+			<form action="index.php" method="GET" name="orderform">
+			<input type="hidden" class="hidden" name="verified" value="1">
+			<input type="hidden" class="hidden" name="page" value="orderform">
+			<input type="hidden" class="hidden" name="order" value="{$prodList}">
+			{if $order_id}
+			<input type="hidden" class="hidden" name="order_id" value="{$order_id}">
+			{/if}
+			<br /><input type="submit" class="checkout" value="Check Out &raquo;">
+			</form>
+		</td>
+	</tr>
+</table>
+<br />
+</form>
+{else}
+	{if $smarty.request.verified}
+	<center><a href="index.php?page=orderform&order"><img src="{$config.plugin_dir}/{$thisPlugin}/img/makeChanges.gif" border="0"></a></center>
+	{else}
+	<blockquote><h2>No items in cart</h2></blockquote>
+	{/if}
+{/if}

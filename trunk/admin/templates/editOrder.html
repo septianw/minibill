@@ -1,0 +1,67 @@
+<table class="niceBox" style="width:500px">
+<form action="index.php" method="post">
+<input type="hidden" name="action" value="saveOrderInfo">
+<input type="hidden" name="order[uniq_id]" value="{$order.uniq_id}">
+<input type="hidden" name="order[id]" value="{$order.id}">
+	<Tr>
+		<th colspan="2">Order Details</th>
+	</tr>
+	<tr>
+		<td><b>Order Item</b></td><td>{$order.id}</td>
+	</tr>
+	<tr>
+		<td><b>Ip Address</b></td><td>{$order.ip}</td>
+	</tr>
+	<tr>
+		<td><b>Order Date</b></td><td>{$order.date_purchased}</td>
+	</tr>
+	<tr>
+		<td><b>Last Billed</b></td><td>{$order.last_billed}</td>
+	</tr>
+	<tr>
+		<td><b>Order Group ID</b></td><td><b><a href="index.php?page=showGroup&uniq_id={$order.uniq_id}">[{$order.uniq_id}]</a></b></td>
+	</tr>
+	<tr>
+		<td><b>Status</b></td>
+		<td valign="top">
+		<select name="order[status]">
+		{html_options options=$status_types selected=$order.status}
+		</select>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Payment Due</b></td><td><input type="text" name="order[payment_due]" value="{$order.payment_due}" size="11" maxlength="11"></td>
+	</tr>
+	<tr>
+		<td><b>Retail Product</b></td>
+		<td>
+			<select name="order[product_id]">
+			{html_options options=$prodlist selected=$order.product_id}
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Final Price (per item)</b></td>
+		<td><input type="text" name="order[amount]" value="{$order.amount}" size="7"></td>
+	</tr>
+	<tr>
+		<td><b>Quantity</b></td>
+		<td valign="top"><input type="text" name="order[quantity]" value="{$order.quantity}" size="7"></td>
+	</tr>
+	<tr>
+		<td><b>Recurring</b></td>
+		<td><input type="text" name="order[recurring]" value="{$order.recurring}" size="7"></td>
+	</tr>
+	<tr>
+		<td><b>Contract Length<Br /><sup>0 = forever</sup></b></td>
+		<td valign="top"><input type="text" name="order[contract]" value="{$order.contract}" size="7"></td>
+	</tr>
+	<tr>
+		<td><b>Delete This Order</b></td>
+		<td valign="top"><input type="checkbox" name="delete" value="1"></td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align:right">
+		<input type="submit" class="btn" value="Update Order">
+		</b></td>
+</table>

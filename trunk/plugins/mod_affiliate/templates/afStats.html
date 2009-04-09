@@ -1,0 +1,27 @@
+<h2>Sales and Commission stats for :: {$smarty.session.name}</h2>
+<table style="border:3px solid #ADADAD;width:500px">
+	<tr>
+		<th colspan="3">Report Date Range</th>
+	</tr>
+	<tr>
+		<td width="50%"><nobr>{html_select_date field_array="start"}</nobr></td>
+		<td align="center"> To </td>
+		<td width="50%" align="right"><nobr>{html_select_date field_array="end"}</nobr></td>
+	</tr>
+</table>
+<br />
+<table style="Border:3px solid #ADADAD;width:500px">
+	<tr>
+		<th colspan="2">{$then|date_format:"%b %e, %Y"} - {$now|date_format:"%b %e, %Y"}</th>
+	</tr>
+	<tr>
+		<td><b>Total Orders</b></td>
+		<td>{$orders}</td>
+	</tr>
+	<tr>
+		<td><b>Total Commissionable</b></td>
+		<td>{$grand_total}</td>
+	</tr>
+</table>
+<Br />
+<Br />

@@ -1,0 +1,78 @@
+{literal}
+<script language="javaScript">
+function reveal(objId)
+{
+	if (document.getElementById(objId).style.display == 'block')
+	{
+		document.getElementById(objId).style.display = 'none';
+	}
+	else
+	{
+		document.getElementById(objId).style.display = 'block';
+	}
+}
+
+
+</script>
+{/literal}
+<table>
+	<tr>
+		<th colspan="2">Message</th>
+	<tr style="border-bottom:1px dotted #EFEFEF">
+		<td>From: </td><td>{$message.q_sender_name} &lt;{$message.q_sender_email}&gt;</td>
+	</tr>
+	<tr style="border-bottom:1px dotted #EFEFEF">
+		<td>Subject: </td><td>{$message.q_subject}</td>
+	</tr>
+{if $message.q_text}
+	<tr>
+		<th colspan="2">Plain Text Portion</th>
+	</tr>
+	<tr>
+		<td colspan="2">
+		{$message.q_text}
+		</td>
+	</tr>
+{/if}
+{if $message.q_html}
+	<tr>
+		<th colspan="2">Html Content Preview</th>
+	</tr>
+	<tr>
+		<td colspan="2">
+		{$message.q_html}
+		</td>
+	</tr>
+{/if}
+	<tr>
+		<th colspan="2">Approve or Decline?</th>
+	</tr>
+	<tr>
+		<td><a href="index.php?action=approve&q_id={$message.q_id}"><img src="../img/approve.png"></a></td>
+		<td align="right">
+			<a href="javaScript:reveal('decline')"><img src="../img/decline.png"></a></td>
+	</tr>
+</table>
+<form action="index.php" method="post">
+<input type="hidden" name="action" value="decline">
+<input type="hidden" name="q_id" value="{$message.q_id}">
+<table id="decline" style="display:none">
+	<tr>
+		<th>Message For Decline - User will receive this email message</th>
+	</tr>
+	<tr>
+		<td>
+		<textarea name="reason" rows="7" cols="60">Your message has been declined for one of the following reasons:
+    - Unreadble message
+    - Does not comply with CAN SPAM
+    - Contains objectional or offensive material
+    - Violates our user agreement
+		</textarea>
+	</tr>
+	<tr>
+		<td align="right">
+		<sup>This action cannot be undone</sup><br />
+		<input type="submit" value="Decline" class="btn"></td>
+	</tr>
+</table>
+</form>

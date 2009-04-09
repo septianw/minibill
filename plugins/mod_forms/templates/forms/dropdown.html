@@ -1,0 +1,8 @@
+<div>
+	<select name="answers[{$question.id}][]" style="{$style};" size="{$question.q_height}">
+		<option value=''>[Select One]</option>
+		{foreach from=$values.values item=q}
+		<option {$q.selected} value="{$q.value}">{$q.text}</option>
+		{/foreach}
+	</select>
+</div>

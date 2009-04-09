@@ -1,0 +1,30 @@
+<!-- CHECKOUT -->
+{include file="loadPlugins.html" pos="leftSideOrder"}
+<table cellpadding="3" width="100%" style="float:left">
+	<tr>
+		<th>ID</th>
+		<th>ORDER LISTING</th>
+		<th width="70">QUANTITY</th>
+		<th align="center">PRICE EA</th>
+		<th align="center">CYCLE</th>
+		<th align="center">INVENTORY</th>
+	</tr>
+	{foreach from=$prods item=prod}
+	<tr>
+		<td>{$prod.id}</td>
+		<td>{$prod.title}</td>
+		<td align="right"><input type="hidden" name="quantity[{$prod.id}]" value="{$prod.quantity}">{$prod.quantity}</td>
+		<td align="right">{$prod.price}</td>
+		<td align="center">{$prod.is_recurring}</td>
+		<td align="center">{if $prod.stock > 0}{$prod.stock}{elseif $prod.stock == -1}IN STOCK{else}<font color="red">SOLD OUT</font>{/if}</td>
+	</tr>
+	{/foreach}
+	<tr style="background:#EFEFEF">
+		<td colspan="2" align="right"><B>Grand Total:</b></td>
+		<td align="right"><b>{$smarty.session.total_items}</b></td>
+		<td align="right"><b>${$grand_total}</b></td>
+		<td colspan="2"></td>
+	</tr>
+</table>
+{include file="loadPlugins.html" pos="rightSideOrder"}
+<!-- END CHECKOUT -->

@@ -1,0 +1,19 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+{literal}
+<script>
+function confirmAction(action,desc)
+{
+    if (confirm(desc))
+    {
+        document.location.href=action;
+    }
+}
+</script>
+
+<link rel="stylesheet" href="../css/styles.css" type="text/css">
+{/literal}
+{$xajax_header}
+</head>

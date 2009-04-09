@@ -1,0 +1,37 @@
+{literal}
+<script>
+function putVars(info)
+{
+	clientVals = info.options[info.selectedIndex].value;
+	clientVars = info.options[info.selectedIndex].text.split(' - ');
+	if (clientVals)
+	{
+		document.invoice.elements[2].value=clientVars[0];
+		document.invoice.elements[3].value=clientVars[1];
+	}
+	else
+	{
+		document.invoice.elements[2].value='';
+		document.invoice.elements[3].value='';
+	}
+}
+</script>
+{/literal}
+
+<div style="display:none">
+	<form action="index.php" method="POST" name="invoice">
+	<input type="hidden" name="action" value="sendInvoice">
+</div>
+
+<div>
+	{include file="invoice_selectClient.html"}
+</div>
+
+<div>
+	{include file="invoice_selectItems.html"}
+</div>
+
+<div align="center">
+	<input class="btn" type="submit" value="Send Invoice">
+	</form>
+</div>

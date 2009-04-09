@@ -1,0 +1,25 @@
+<h2>Shipping Status of Orders</h2>
+this is going to need to take the scan code (P / S), and refresh back to here.
+<table width="100%">
+	<tr>
+		<th>Order ID</th>
+		<th>Ship To</th>
+		<th>Packaged</th>
+		<th>Shipped</th>
+		<th>Tracking #</th>
+		<th></th>
+	</tr>
+	{foreach from=$shipInfo item=ship}
+	<form name="ship_{$ship.uniq_id}" method="get">
+	<input type="hidden" name="action" value="saveShip">
+	<tr>
+		<td>{$ship.uniq_id}</td>
+		<td>{$ship.firstName}, {$ship.lastName}</td>
+		<td><input type="text" value="{$ship.packaged}" name="packaged"></td>
+		<td><input type="text" value="{$ship.shipped}" name="shipped"></td>
+		<td><input type="text" value="{$ship.tracking_no}" name="tracking_no"></td>
+		<td><input type="submit" value="Update" class="btn"></td>
+	</tr>
+	</form>
+	{/foreach}
+</table>

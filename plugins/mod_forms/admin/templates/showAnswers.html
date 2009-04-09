@@ -1,0 +1,18 @@
+<table>
+	<tr>
+		<td><h3>{$client.name|default:$client.email}</h3></td>
+	</tr>
+</table>
+<table id="list">
+	<tr>
+		<th>Question</th><th>Answer</th><th>Price</th>
+	</tr>
+	{foreach from=$answer item=a}
+	<tr bgcolor="{cycle values="#FFFFFF,#CDCDCD"}">
+		<td>{$a.q_caption}</td><td>{$a.answer}</td><td align="center">{$a.price}</td>
+	</tr>
+	{/foreach}
+	<tr>
+		<td colspan="2" align="right"><em>Total</em></td><td align="center">{$total_price}</td>
+	</tr>
+</table>

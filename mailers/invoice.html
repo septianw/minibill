@@ -1,0 +1,63 @@
+<html>
+<style type="text/css">
+{literal}
+table {font:bold 10px "Trebuchet MS",arial;border:1px solid #EFEFEF;}
+h2 {font:bold 14px;margin:0px}
+th {border:1px solid #efefef;text-align:left;background:#CCDCDD}
+b  {font-size:12px}
+{/literal}
+</style>
+
+<body>
+{$user.firstname}, <br /><br />
+<h1>Order ID: {$order_id}</h1>
+<table width="400">
+        <tr>
+        <td colspan="3">
+                <table width="100%">
+                                <tr>
+                                        <td><h2>Bill to</h2></td>
+                                        <td><h2>From</h2></td>
+                                <tr>
+                                        <th valign="top" width="50%">{$user.firstname} {$user.lastname}<br />
+                                                {$user.address} <br />
+                                                {$user.city} <br />
+                                                {$user.state} <br />
+                                                {$user.zipcode} <br />
+                                                {$user.country} <br />
+                                                {$user.phone} <br />
+                                        </th>
+                                        <th valign="top" width="50%">{$config.invoice_friendly}<br />
+                                                {$config.invoice.email} <br />
+                                                {$config.company.address1} <br />
+                                                {$config.company.city} <br />
+                                                {$config.company.state} <br />
+                                                {$config.company.zipcode} <br />
+                                                {$config.company.country} <br />
+                                                {$config.company.phone} <br />
+                                        </th>
+                                </tr>
+            </table>
+        </td>
+        </tr>
+        <tr>
+        <td><b>ITEMS</b></td>
+        <td align="right"><b>AMOUNT</b></td>
+        <td><b>ORDER ID</b></td>
+    </tr>
+{foreach from=$items item=i}
+    <tr>
+        <td>{$i.item_desc}</font></td>
+        <td align="right">{$i.price}</td>
+        <td>{$i.uniq_id}</td>
+    </tr>
+{/foreach}
+    <tr style="background:#EDEDED">
+        <td colspan="2" align="right"><i><b>Total:</b></i></td>
+        <td align="right"><b><i>{$grand_total}</i></b></td>
+    </tr>
+</table>
+
+</font>
+</body>
+</html>

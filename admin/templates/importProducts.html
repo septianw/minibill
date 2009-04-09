@@ -1,0 +1,24 @@
+<!-- BEGIN: main -->
+<h2>Import CSV Lists</h2>
+<blockquote>
+	File must be in CSV format. you can export your file using excel into csv format.
+</blockquote>
+
+<div align="center">
+<form method="post" action="index.php" enctype="multipart/form-data">
+Upload CSV File: <input type="hidden" name="action" value="uploadcsv">
+<input type="file" name="csvfile"><input type="submit" value="Upload"></form>
+</div>
+
+{if $list}
+	<Table align=center>
+		<tr>
+			<th>Uploaded List File</th><th>File Size</th><th>Uploaded</th><td></td>
+		</tr>
+{foreach from=$list item=file}
+		<tr class=darkheadcopy>
+			<td style="border-bottom:1px dotted #CDCDCD">{$file.fname_short}</td><td style="border-bottom:1px dotted #CDCDCD">{$file.fsize}</td><td style="border-bottom:1px dotted #CDCDCD">{$file.fdate}</td><td style="border-bottom:1px dotted #CDCDCD"><a href="index.php?page=importList&file={$file.fname}">IMPORT</a></td>
+		</tr>
+{/foreach}
+	</table>
+{/if}

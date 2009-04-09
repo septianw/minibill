@@ -1,0 +1,2 @@
+alter table mod_promocast add promoCredits int unsigned not null;
+

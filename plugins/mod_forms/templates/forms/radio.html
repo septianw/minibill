@@ -1,0 +1,5 @@
+<div>
+	{foreach from=$values.values item=q}
+	<input type=radio {$q.selected} name="answers[{$question.id}][]" value="{$q.value}" /> {$q.text}<br />
+	{/foreach}
+</div>

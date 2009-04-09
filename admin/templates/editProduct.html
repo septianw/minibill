@@ -1,0 +1,59 @@
+<table>
+<form action="index.php">
+<input type="hidden" name="action" value="saveProduct">
+{if $prod.id}<input type="hidden" name="prod[id]" value="{$prod.id}">{/if}
+	<tr>
+		<th colspan="2">Product / Service Configuration</th>
+	</tr>
+	<tr>
+		<td><b>Title</b></td>
+		<td><input type="text" value="{$prod.title}" name="prod[title]"></td>
+	</tr>
+	<tr>
+		<td><b>Description</b><br /><sub>HTML Allowed</sub></td>
+		<td><textarea rows="7" cols="30" name="prod[item_desc]">{$prod.item_desc}</textarea></td>
+	</tr>
+	<tr>
+		<td><b>Category</b></td>
+		<td>
+			<select name="prod[category_id]">
+			{html_options options=$cats selected=$prod.category_id}
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Price</b></td>
+		<td><input type="text" value="{$prod.price}" name="prod[price]" size="6" maxlength="6"></td>
+	</tr>
+	<tr>
+		<td><b>Weight</b></td>
+		<td><input type="text" value="{$prod.weight}" name="prod[weight]" size="6" maxlength="6"></td>
+	</tr>
+	<tr>
+		<td><b>Number in Stock
+		</b></td>
+		<td><input type="text" value="{$prod.stock}" name="prod[stock]"><br /><sub>-1 = infinite supply</sub>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Scan Code Digits<Br /><sub>Aka Barcode,SKU,UPC</sub>
+		</b></td>
+			<td><input type="text" value="{$prod.item_code}" name="prod[item_code]"></td>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Billing Cycle</b></td>
+		<td>
+			<select name="prod[is_recurring]">
+			{html_options options=$recurring values=$recurring selected=$prod.is_recurring}
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align:right"><input type="submit" value="Save" class="btn"></b></td>
+	</tr>
+	</form>
+</table>
+<table>
+	{include file="loadPlugins.html"}
+</table>

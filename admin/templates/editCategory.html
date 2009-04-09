@@ -1,0 +1,35 @@
+{include file="category_definitions.html"}
+
+<form action="index.php" method="post">
+<input type="hidden" name="action" value="saveCategory">
+{if $category_id}
+<input type="hidden" name="cat[category_id]" value="{$category_id}">
+{/if}
+<table id="content" width="700">
+	<tr>
+		<td>
+			<table id="content" align="center">
+				<tr>
+					<th>Title</th><td><input type="text" name="cat[title]" size="30" maxlength="255" value="{$title}"></td>
+				</tr>
+{foreach from=$cat item=cat key=tk}
+				<tr>
+					<td>{$tk}</td>
+					<td>
+						<select name="cat[{$tk}]">
+						<option value="">DISABLED</option>
+					{foreach from=$tpls item=t}
+						<option {if $t.name == $cat.name}SELECTED{/if}>{$t.name}</option>
+					{/foreach}
+						</select> <a href="index.php?page=addTemplate">[NEW]</a>
+					</td>
+				</tr>
+{/foreach}
+				<tr>
+					<td colspan="2" style="text-align:center"><input type="submit" value="Save"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>

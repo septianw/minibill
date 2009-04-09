@@ -1,0 +1,21 @@
+{$POST.page}
+{if $files}
+<table width="100%">
+	<tr>
+		<th>File</th>
+		<th align="right">Size</th>
+		<th align="center">Date</th>
+		<th></th>
+	</tr>
+	{foreach from=$files item=file}
+	<tr style="border-top:1px solid #CDCDCD;background:{cycle values="#EFEFEF,#FFFFFF"}">
+		<td style="padding-left:10px"><a href="index.php?action=download&file_id={$file.file_id}&nogz=1">{$file.name}</a><br /><sup>{$file.description}</sup></td>
+		<td align="right">{$file.size}</td>
+		<td align="center">{$file.fdate}</td>
+		<td align="center"><a href="index.php?action=download&file_id={$file.file_id}&nogz=1">[DOWNLOAD]</a></td>
+	</tr>
+	{/foreach}
+</table>
+{else}
+	<h2>No files available for download.</h2>
+{/if}

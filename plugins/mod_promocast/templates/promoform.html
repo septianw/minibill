@@ -1,0 +1,79 @@
+{if $prods}
+<div>
+	<form action="index.php" method="POST" name="orderform">
+	<input type="hidden" name="action" value="purchase">
+	<input type="hidden" name="user[comments]" value="{$comments}">
+	{if $order_id}
+	<input type="hidden" name="order_id" value="{$order_id}">
+	{/if}
+</div>
+
+<table cellpadding="3" align="center" width="720">
+	<tr>
+		<td colspan="2">
+		{include file="orderform_checkoutItems.html"}
+		</td>
+	</tr>
+	{if $errors}
+	<tr>
+		<td colspan="2">
+		{include file="orderform_errors.html"}
+		</td>
+	</tr>
+	{/if}
+	<tr>
+		<td valign="top" width="50%">
+		{include file="orderform_billingInfo.html"}
+		{include file="loadPlugins.html" pos="appendFormLeft"}
+		</td>
+		<td valign="top" width="50%">
+		<table width="100%" style="margin:0px;padding:0px;">
+			<tr>
+				<th>Payment Options</th>
+			</tr>
+			<tr>
+				<td>
+					<img src="img/ssl_lock.jpg"><img src="img/visa_mc.gif"><Br />
+{if $config.merchant.use_authnet}
+					<input type="radio" name="payment_type" value="AUTHNET" onChange="javascript:reveal('creditCard','paypal_ipn')" CHECKED> Credit Card<br />
+{/if}
+{if $config.merchant.use_paypal}
+					<input type="radio" name="payment_type" value="PAYPAL" onChange="javascript:reveal('paypal_ipn','creditCard' )"{if !$config.merchant.use_authnet}CHECKED{/if}> PayPal<br />
+{/if}
+					{include file="loadPlugins.html" pos="paymentOption"}
+				</td>
+			</tr>
+		</table>
+{if $config.merchant.use_authnet}
+			<div id="creditCard" style="display:block">
+				{include file="orderform_creditCard.html"}
+			</div>
+{/if}
+{if $config.merchant.use_paypal}
+			<div id="paypal_ipn" {if $config.merchang.use_authnet}style="display:none"{/if}>
+				{include file="orderform_paypal_ipn.html"}
+			</div>
+{/if}
+			{include file="loadPlugins.html" pos="paymentOptionData"}
+			{include file="loadPlugins.html" pos="appendFormRight"}
+		</td>
+	</tr>
+	<tr>
+		<td align="center" valign="top" colspan="2">
+	<br /><input type="submit" class="checkout" value="Send Payment &gt;">
+		</td>
+	</tr>
+</table>
+</form>
+{else}
+	<Br />
+	<table align="center" class="niceBox">
+		<tr>
+			<th style="padding:0px 10px">No products in your order manifest</th>
+		</tr>
+		<tr>
+			<td style="margin:20px;padding:20px;"><a href="{$config.secure.cart}">Visit our shopping cart!</a></td>
+		</tr>
+	</table>
+	<Br />
+{/if}

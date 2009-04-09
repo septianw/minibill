@@ -1,0 +1,36 @@
+{foreach from=$categories item=c}
+	{if $c.count}
+		{if $c.id == $smarty.get.category_id}
+			{assign var="color" value="CDEFEF"}
+		{else}
+			{assign var="color" value="CDCDCD"}
+		{/if}
+
+<table style="margin-top:10px;margin-left:2px;background:#{$color};width:200px;float:left" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td><img src="img/corner.php?rad=15&pos=tl&ci=%23{$color}&co=%23000000&border=1"></td>
+		<td style="border-top:1px solid black;width:100%"></td>
+		<td align="right"><img src="img/corner.php?rad=15&pos=tr&ci=%23{$color}&co=%23000000&border=1"></td>
+	</tr>
+	<tr>
+		<td colspan="3" style="color:black;text-align:center;border-left:1px solid black;border-right:1px solid black">
+			<a href="index.php?page=showProducts&category_id={$c.id}" style="display:block;width:100%">{$c.title} <span style="font-size:8px">({$c.count})</a></span>
+
+		</td>
+	</tr>
+</table>
+	{/if}
+{/foreach}
+
+{* Only display products which are being showcased *}
+
+{if $thisPage == 'cart'}
+	<div style="clear:both;margin:0px;margin-bottom:10px;padding:0px;border:1px solid #CDCDCD;height:88px;">
+		<h1 style="margin-top:25px" align="center">Our featured products</h1>
+	</div>
+	<center>
+	{include file="featured.html"}
+	</center>
+{else}
+	<div style="clear:both;margin:0px;padding:0px;border:0px"></div>
+{/if}

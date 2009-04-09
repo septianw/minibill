@@ -1,0 +1,44 @@
+<h2>Customer Orders: {$customer_name}</h2>
+<table id='content' width="100%">
+	<tr>
+		<th>ID - UNIQ</th>
+		<th>ITEM</th>
+		<th>AMOUNT</th>
+		<th>QUANTITY</th>
+		<th>PURCHASED</th>
+		<th>BILLED</th>
+		<th>DUE</th>
+		<th>CYCLE</th>
+		<th>STORE</th>
+		<th>STATUS</th>
+		<th>CONTRACT</th>
+	</tr>
+{foreach from=$orders item=o}
+	<tr>
+		<td style="text-align:center">
+			<table>
+				<tr>
+					<td><a href="index.php?page=editOrder&id={$o.id}" title="Edit order item">[{$o.id}]</a></td>
+					<td> - </td>
+					<td><a href="index.php?page=showGroup&uniq_id={$o.uniq_id}" title="Show order group">[{$o.uniq_id}]</a></td>
+				</tr>
+			</table>
+		</td>
+		<td style="text-align:left"><a href="index.php?page=editProduct&id={$o.product_id}">{$o.product_id} - {$o.product.title}</a></td>
+		<td style="text-align:right">{$o.amount}</td>
+		<td style="text-align:center">{$o.quantity}</td>
+		<td style="text-align:center">{$o.date_purchased}</td>
+		<td style="text-align:center">{$o.last_billed}</td>
+		<td style="text-align:center">{$o.payment_due}</td>
+		<td style="text-align:center">{$o.product.is_recurring}</td>
+		<td style="text-align:center">{$o.purchased_from}</td>
+		<td style="text-align:center">{$o.status}</td>
+		<td style="text-align:center">{$o.contract}</td>
+	</tr>
+{/foreach}
+	<tr>
+		<td colspan="2" align="right"><b>{$numOrders} order totals</b></td>
+		<td align="right"><b>{$orderTotal}</b></td>
+		<td align="center"><b>{$itemTotal}</b></td>
+	</tr>
+</table>

@@ -1,0 +1,26 @@
+{if !$LOGGED_IN}
+<table width="400" align="center" class="niceBox">
+<form action="index.php" method="POST" name="login">
+<input type="hidden" name="action" value="login">
+	<tr>
+		<th colspan="2">BILLING ACCOUNT LOGIN</th>
+	</tr>
+    <tr>
+        <td>Your account email</td>
+        <td><input type="text" name="email"></td>
+    </tr>
+    <tr>
+        <td>Your account Password</td>
+        <td><input type="password" name="password"></td>
+    </tr>
+	<tr>
+		<td colspan="2" align="right">
+			<div style="float:left;margin-top:30px;"><input type="button" onclick="javscript:document.location.href = 'index.php?page=lost_password';" class="btn" value="Forgot Password"></div>
+			<div style="float:right;"><input type="submit" value="Login" class="btn" style="margin:20px;"></div>
+		</td>
+	</tr>
+</table>
+</form>
+{else}
+	<h2 align="center">Welcome to your billing Panel</h2>
+{/if}

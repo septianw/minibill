@@ -1,0 +1,45 @@
+{if $pc > $fc}
+<div style="float:left;display:inline">
+	 # Forms {$fc} / {$pc}
+</div>
+{/if}
+{if $num_pages > 1}
+<div style="float:right">
+		Page {$page} of {$num_pages}
+</div>
+{/if}
+
+<form action="index.php" method="POST" name="mod_form">
+<input type="hidden" name="action" value="saveForm">
+<input type="hidden" name="pg" value="{$page}">
+<input type="hidden" name="product_id" value="{$smarty.request.product_id}">
+<input type="hidden" name="form_id" value="{$form.id}">
+<input type="hidden" name="qpp" value="{$form.q_per_page}">
+
+
+<div id="questions" style="margin:auto;text-align:center;width:100%;">
+<!-- Questions Are Here -->
+{foreach from=$questions item=q}
+{$q.html}
+{/foreach}
+<!-- END Questions -->
+</div>
+
+<!-- Back / Next / Finish Navigation -->
+<div align="center" style="clear:both;margin-bottom:20px;">
+
+	{if $page > 1}
+		<input type="button" onclick="javascript:history.back()" value="&laquo; Back" style="margin-right:50px" class="btn">
+	{/if}
+
+	{if $page < $num_pages}
+		<input type="submit" value="Next &raquo;" class="btn">
+	{else}
+
+		<input type="hidden" name="finish" value="1">
+		<input type="submit" value="&laquo; Finish &raquo;" class="btn">
+	{/if}
+</div>
+</form>
+<br />
+<!-- END Navigation -->

@@ -1,0 +1,71 @@
+<table cellpadding="3" width="100%">
+	<tr>
+		{if $user.id}
+		<input type="hidden" name="shipping[user_id]" value="{$user.id}">
+		{elseif $shipping.user_id}
+		<input type="hidden" name="shipping[user_id]" value="{$shipping.user_id}">
+		{/if}
+		<th colspan="2">Shipping Information</th>
+	</tr>
+	<tr>
+		<td><b>First Name</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[firstname]" value="{$shipping.firstname}"></td>
+	</tr>
+	<tr>
+		<td><b>Last Name</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[lastname]" value="{$shipping.lastname}"></td>
+	</tr>
+	<tr>
+		<td ><b>Address 1</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[address1]" value="{$shipping.address1}"></td>
+	</tr>
+	<tr>
+		<td ><b>Address 2</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[address2]" value="{$shipping.address2}"></td>
+	</tr>
+
+	<tr>
+		<td ><b>City</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[city]" value="{$shipping.city}"></td>
+	</tr>
+	<tr>
+        <td><b>State</b></td>
+        <td>
+            <select name="shipping[state]">
+			<option>[Select State]</option>
+            {state_select selected=$shipping.state}
+            </select>
+        </td>
+    </tr>
+	<tr>
+		<td ><b>Zip Code</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[zipcode]" value="{$shipping.zipcode}"></td>
+	</tr>
+    <tr>
+        <td><b>Country</b></td>
+        <td>             
+			<select name="shipping[country]">
+			<option>[Select Country]</option>
+            {country_select selected=$shipping.country}
+            </select>
+		</td>
+	</tr>
+
+	<tr>
+		<td ><b>Phone #</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[phone]" value="{$shipping.phone}"></td>
+	</tr>
+	<tr>
+		<td ><b>Fax #</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[fax]" value="{$shipping.fax}"></td>
+	</tr>
+	<tr>
+		<td ><b>Cell #</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[cell]" value="{$shipping.cell}"></td>
+	</tr>
+	{if $thisPage != 'products'}
+	<tr>
+		<td colspan="2" align="center"><input type="submit" value="Update" class="btn"></td>
+	</tr>
+	{/if}
+</table>

@@ -1,0 +1,65 @@
+<br />
+<table cellpadding="3">
+<form action="index.php" method="POST">
+<input type="hidden" name="action" value="timesheet_sendInvoice">
+<input type="hidden" name="client_id" value="{$client.info.id}">
+	<tr>
+		<td colspan="5">
+			<div style="float:left">
+				<a href="index.php?page=timesheet_editClient&client_id={$client.info.id}"><h2 style="margin:0px">{$client.info.clientDesc|stripslashes}</h2></a>
+				{$client.mb.address}<br />
+				{$client.mb.city}
+				{if $client.mb.state} , {$client.mb.state}{/if}<br />
+				{$client.mb.zipcode}<br />
+				{$client.mb.phone}
+			</div>
+			<div style="float:right">
+				<h3 style="margin:0px">{$config.company.name}</h3>
+				{$config.company.address}<br />
+				{$config.company.city}, {$config.company.state}<br />
+				{$config.company.zipcode}<br />
+				{$config.company.phone}
+			</div>
+		</td>
+	</tr>
+	{if $jobs}
+	<tr>
+		<th>Job Name</th>
+		<th>Rate</th>
+		<th>Time</th>
+		<th>Cost</th>
+		<th>Work Period</th>
+	</tr>
+	{foreach from=$jobs item=job}
+	<tr>
+		<td>{$job.jobDesc}</td>
+		<td>{$job.rate}</td>
+		<td>{$job.time.days}D {$job.time.hours}:{$job.time.minutes}:{$job.time.seconds}</td>
+		<td>{$job.revenue|number_format:2}</td>
+		<td>{$job.start|date_format:"%D"} - {$job.finished|date_format:"%D"}</td>
+	</tr>
+	{/foreach}
+	<tr>
+		<td colspan="2" align="right"><b>Total</b></td>
+		<td><b>{$client.totalTime.days}D {$client.totalTime.hours}:{$client.totalTime.minutes}:{$client.totalTime.seconds}</b></td>
+		<td><b>{$client.revenue|number_format:2}</b></td>
+	</tr>
+	<tr>
+		<th colspan="5">Special Notes or Comments for {$client.info.clientDesc|stripslashes}</th>
+	</tr>
+	<tr>
+		<td colspan="5"><textarea name="billing[notes]" rows="6" cols="60"></textarea></td>
+	</tr>
+	<tr>
+		<td colspan="5" align="right"><input type="submit" value="Send Invoice" class="btn"></td>
+	</tr>
+	</form>
+	{else}
+	<tr>
+		<td colspan="5"><h2>No Job information</h2>
+			<h3>Perhaps you should do some work for them?</h3>
+		</td>
+	</tr>
+	{/if}
+
+</table>

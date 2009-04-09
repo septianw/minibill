@@ -1,0 +1,38 @@
+<table cellpadding="3" width="100%">
+	<tr>
+		<th colspan="2">Current card on file information</th>
+	</tr>
+
+{if !$cardinputonly}
+	{if $user.cc_exp_mo && $user.cc_exp_yr}
+	<tr style="background:#EDEDED">
+		<td><b>Card on file</b></th>
+		<td >XXXX-XXXX-XXXX-<b>{$user.safeCard}</b></td>
+	</tr>
+	<tr style="background:#EDEDED">
+		<td><b>Expiration Date</b></th>
+		<td >{$user.cc_exp_mo} / {$user.cc_exp_yr}</td>
+	</tr>
+	{else}
+	<tr><td colspan="2">No card on file</td></tr>
+	{/if}
+	
+	<tr>
+		<td colspan="2" style="height:3px;background:#CDCDCD"></td>
+	</tr>
+	<tr>
+		<td><b>Change card on file</b></th>
+{else}
+	<tr>
+		<td><b>Add card on file</b></th>
+{/if}
+		<td ><input type="text" name="card[cardnum]"></td>
+	</tr>
+	<tr>
+		<td><b>Expiration</b></th>
+		<td ><sup>MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;YYYY</sup><br /><input type="text" name="card[cc_exp_mo]" size=2 maxlength=2> / <input type="text" name="card[cc_exp_yr]" size=4 maxlength=4></td>
+	</tr>
+	<tr>
+		<td colspan=2 align="center"><input type="submit" class="btn" value="Update"></td>
+	</tr>
+</table>

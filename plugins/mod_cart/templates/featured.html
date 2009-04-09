@@ -1,0 +1,62 @@
+{literal}
+<style>
+
+.content    { width:420px;border:1px solid #CDCDCD;margin-bottom:30px;}
+.rounded	{ width:420px;margin:0px;border:0px;background:#CDCDCD;padding:0px}
+.outOfStock { float:right;width:100%;background:#a00000;color:#FFFFFF;}
+.cartPrice  { font-size:19px;font-weight:bold;color:#000000;text-align:right}
+.cartTitle  { border:0px;padding-top:3px;font-size:19px }
+.descBox	{ width:100%;margin-left:10px;float:left;height:150px}
+
+</style>
+{/literal}
+
+<table align="center">
+	<tr>
+		<td>	
+			{foreach from=$products item=p}
+			<table style="float:left;margin:10px">
+				<Tr>
+					<td>
+						<table class="rounded" cellpadding="0">
+							<tr>
+								<td><img src="img/corner.php?rad=15&pos=tl&ci=CDCDCD&co=000000&"></td>
+								<td colspan="2" align="right"><img src="img/corner.php?rad=15&pos=tr&ci=CDCDCD&co=000000&"></td>
+							</tr>
+						</table>
+
+						<table class="content">
+							<tr style="background:#EFEFEF">
+								<td class="cartTitle" valign="top">{$p.title}</td>
+								<td class="cartPrice">{$config.currency.char}{$p.price} {$config.currency.code}</td>
+							</tr>
+							<tr>
+								<td align="right" colspan="2" class="cartPrice"><font size="-3">{if $p.stock > 0}We have {$p.stock} in stock{elseif $p.stock == -1}In stock
+									{elseif $p.stock == 0}
+									<div class="outOfStock"><span style="margin-right:10px">OUT OF STOCK</span></div>
+								{/if}
+								</font>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top" colspan="2">
+									<div class="descBox">
+									{$p.item_desc}{if $p.thumbnail}<a href="index.php?page=orderform&order={$p.id}"><img src="{$p.thumbnail}" border="0" align="left"></a>{/if}
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td align="right" colspan="2">
+									{if $p.stock != 0}
+									<span class="addToCart"><a class="addToCart" href="index.php?page=orderform&order={$p.id}"><img src="{$config.plugin_dir}/{$thisPlugin}/img/add2cart.gif" style="margin:3px;border:2px solid #CDCDCD"></a></span>
+								{/if}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			{/foreach}
+		</td>
+	</tr>
+</table>

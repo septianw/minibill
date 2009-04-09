@@ -1,0 +1,43 @@
+    <table cellpadding="3" width="100%">
+        <tr>
+            <th>ORDER #</th>
+            <th>ITEM</th>
+            <th align="center">AMOUNT</th>
+            <th align="center">PURCHASED</th>
+            <th align="center">NEXT DUE</th>
+            <th align="center">OPTIONS</th>
+        </tr>
+    {foreach from=$orders item=order}
+        <tr {if $order.status == 'cancel'} class="cancelled" {/if} style="background:{cycle values="#EFEFEF,#FFFFFF"}">
+            <td ><b>{$order.uniq_id}</b></td>
+            <td ><b>{$order.title} {if $order.quantity > 1} x {$order.quantity} @ {$config.currency.char}{$order.amount} ea{/if}</b></td>
+            <td align="right">{$config.currency.char}{$order.grand_total}</td>
+            {if $order.status != 'cancel'}
+                <td align="center">{$order.date_purchased}</td>
+                <td align="center">{if $order.status == 'due' || $order.recurring > 0}{$order.payment_due}{else}-{/if}</td>
+                <td align="left">
+                    {if $order.status == 'due' || $order.recurring}
+                        <a title="Pay now" href="index.php?page=orderform&pay=now&order_id={$order.order_id}"><img src="img/pay.gif" border="0" align="middle" alt="pay now"></a>
+                        {if $order.recurring > 0}
+                            <a title="Cancel service" href="index.php?page=cancelService&id={$order.order_id}"><img src="img/trash.gif" border="0" align="middle" alt="Cancel Service"></a>
+                        {/if}
+                    {else}
+                        <font color="00AD00" style="letter-spacing:4px"><b>PAID</b></font>
+                    {/if}
+                </td>
+            {else}
+                <td colspan="4" style="color:red;font:bold 11px arial;text-align:center">[CANCEL: {$order.payment_due}]</td>
+            {/if}
+        </tr>
+    {/foreach}
+        <tr>
+            <td colspan=1 style="text-align:right"><b>Total Paid</b></td>
+            <td align="right"><b>{$config.currency.char}{$total_paid} {$config.currency.code}</b></td>
+        </tr>
+		{if $total_due > 0}
+        <tr>
+            <td colspan=1 style="text-align:right"><b>Total Past Due</b></td>
+            <td align="right"><b>{$config.currency.char}{$total_due} {$config.currency.code}</b></td>
+        </tr>
+		{/if}
+    </table>

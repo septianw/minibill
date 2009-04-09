@@ -1,0 +1,26 @@
+</div></div></table>
+<br />
+<div style="background:#EFEFEF;width:100%;display:block;">
+{if !$smarty.session.installing}
+	{if $config.company.contact_email}
+	If you need assistance, please contact <a href="mailto:{$config.company.contact_email}">{$config.company.contact_email}</a> <br /> dial {$config.company.phone} {$config.company.office_hours}
+	{/if}
+{else}
+	<h2 align="center">INSTALLING</h2>
+{/if}
+	<div style="text-align:right;margin-right:40px">
+<!-- // START COPYRIGHT NOICE // -->
+<!-- Come on, be a pal.  You downloaded this for free and it works great.
+Please dont remove or otherwise obscure the following copyright notice from the footer so that
+more people will be able to find MiniBill! -->
+	<a href="http://www.ultrize.com/minibill/"><img src="img/poweredByMiniBill.png" align="absmiddle"></a> {$config.version.major}.{$config.version.minor}:{$config.version.build} {$config.version.release} &copy; 2006 <a href="http://www.ultrize.com">Ultrize LLC</a>
+<!-- // END COPYRIGHT NOICE // -->
+	</div>
+</div>
+
+<div style="background:#EFEFEF;width:100%;height:8px;">
+	<div class="blCorner"></div>
+	<div class="brCorner"></div>
+</div>
+
+</body>

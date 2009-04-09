@@ -1,0 +1,42 @@
+<center>
+	<div style="text-align:left;width:500px;margin-bottom:20px">
+		<h2>Thank you for your order, {$firstname|ucfirst} {$lastname|ucfirst}</h2>
+		<table width="100%">
+			<tr>
+				<td><b>Your order number is: #{$smarty.session.order_id}</b></td>
+				<td align="right"><b>[{$smarty.session.oc.purchase_date}]</b></td>
+			</tr>
+		</table>
+		<table cellpadding="3" width="100%" class="niceBox">
+			<tr>
+				<th>Item Description</th>
+				<th align="center">Cost Each</th>
+				<th align="center">Sub Total</th>
+			</tr>
+		{foreach from=$prods item=prod}
+			<tr style="background:{cycle values="#EFEFEF,#FFFFFF"}">
+				<td>{$prod.quantity} x <b>{$prod.title}</b></td>
+				<td align="right">{$prod.price}</td>
+				<td align="right">{$prod.subTotal|number_format:2}</td>
+			</tr>
+		{/foreach}
+			<tr style="background:#CDCDCD">
+				<td colspan=2 style="text-align:right"><b>Total Paid</b></td>
+				<td align="right"><b>{$grand_total|number_format:2}</b></td>
+			</tr>
+		</table>
+		If you wish to view the status of your order, update your account information, or cancel services you may have started with us, you may do so by logging in to your customer care center at {$config.secure.url} 
+		<h3><a href="{$config.secure.url}"><u>Click here</u></a> to log into your customer care center.</h3>
+		<table>
+			<tr>
+				<td><b>Login</b></td>
+				<td>{$email}<Br /></td>
+			</tr>
+			<tr>
+				<td><b>Password</b></td>
+				<td>{$password}<Br /></td>
+			</tr>
+		</table>
+		<p>Please print or archive this for your records.</p>
+	</div>
+</center>

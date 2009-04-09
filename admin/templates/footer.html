@@ -1,0 +1,30 @@
+{if !$smarty.session.installing}
+<table style="background:#EFEFEF;width:100%" cellpadding="0" cellspacing="0" align="center">
+	<tr>
+		<td colspan="3" style="padding:10px">
+			{if $config.company.contact_email}
+			If you need assistance, please contact <a href="mailto:{$config.company.contact_email}">{$config.company.contact_email}</a> <br /> dial {$config.company.phone} {$config.company.office_hours}
+<br /><br />
+			{/if}
+			<div style="text-align:right;margin:10px;margin-right:40px;margin-top:15px;">
+<!-- // START COPYRIGHT NOICE // -->
+<!-- Come on, be a pal.  You downloaded this for free and it works great.
+Please dont remove or otherwise obscure the following copyright notice from the footer so that
+more people will be able to find MiniBill! -->
+            MiniBill {$config.version.major}.{$config.version.minor}:{$config.version.build} {$config.version.release} &copy; 2005 <a href="http://www.ultrize.com">Ultrize LLC</a>
+<!-- // END COPYRIGHT NOICE // -->
+			</div>
+<!--
+        <td>
+            <a href="http://www.ultrize.com/minibill/"><img src="https://secure.ultrize.com/minibill/images/minibill.gif" border="0" title="Powered by MiniBill" alt="MiniBill Billing Software"></a>
+        </td>
+-->
+		</td>
+	</tr>
+	<tr>
+		<td><img src="../img/corner.php?rad=15&trans=FFFFF1&pos=bl&ci=FFFFF1&co=FFFFFF&"></td>
+		<td colspan="2" align="right"><img src="../img/corner.php?rad=15&trans=FFFFF1&pos=br&ci=FFFFF1&co=FFFFFF&"></td>
+	</tr>
+</table>
+{/if}
+</body>

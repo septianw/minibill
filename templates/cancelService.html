@@ -1,0 +1,23 @@
+<table cellpadding="3" class="niceBox" style="width:500px" align="center">
+	<tr>
+		<th>Cancelling service for: {$service.order.title}</th>
+		<th>Cancelation Date</th>
+	</tr>
+	<form action="index.php" method="POST">
+	<input type="hidden" name="action" value="cancelService">
+	<input type="hidden" name="order_id" value="{$service.order.order_id}">
+	<tr>
+		<td>{$service.order.title}</td>
+		<td align="center">{$service.order.payment_due}</td>
+	</tr>
+	<tr>
+		<td colspan="2">Though we hate to see you go, if you wouldn't mind taking a moment to tell us the reason for this cancellation<br />
+		<textarea name="cancel_reason" rows="5" cols="50" style="width:100%"></textarea>	
+		</td>
+	</tr>
+	<tr>
+		<td align="left"><input type="button" onclick="javascript:history.back()" value="Nevermind" class="btn">
+		<td align="right"><input type="submit" class="btn" value="Cancel my service"></td>
+	</tr>
+</table>
+</form>

@@ -1,0 +1,71 @@
+<table cellpadding="3" width="100%">
+	<tr>
+		{if $user.id}
+		<input type="hidden" name="shipping[user_id]" value="{$user.id}">
+		{elseif $shipping.user_id}
+		<input type="hidden" name="shipping[user_id]" value="{$shipping.user_id}">
+		{/if}
+		<th colspan="2">Shipping Information</th>
+	</tr>
+	<tr>
+		<td><b>First Name</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[firstname]" value="{$shipping.firstname}"></td>
+	</tr>
+	<tr>
+		<td><b>Last Name</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[lastname]" value="{$shipping.lastname}"></td>
+	</tr>
+	<tr>
+		<td ><b>Address 1</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[address1]" value="{$shipping.address1}"></td>
+	</tr>
+	<tr>
+		<td ><b>Address 2</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[address2]" value="{$shipping.address2}"></td>
+	</tr>
+	<tr>
+		<td ><b>City</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[city]" value="{$shipping.city}"></td>
+	</tr>
+	<tr>
+		<td ><b>State</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[state]" value="{$shipping.state}"></td>
+	</tr>
+	<tr>
+		<td ><b>Zip Code</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[zipcode]" value="{$shipping.zipcode}"></td>
+	</tr>
+	<tr>
+		<td ><b>Country</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[country]" value="{$shipping.country}"></td>
+	</tr>
+	<tr>
+		<td ><b>Phone #</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[phone]" value="{$shipping.phone}"></td>
+	</tr>
+	<tr>
+		<td ><b>Fax #</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[fax]" value="{$shipping.fax}"></td>
+	</tr>
+	<tr>
+		<td ><b>Cell #</b></td>
+		<td ><input type="text" maxlength="255" size="30" name="shipping[cell]" value="{$shipping.cell}"></td>
+	</tr>
+	{if $thisPage != 'products'}
+	<tr>
+		<td colspan="2" align="center"><input type="submit" value="Update" class="btn"></td>
+	</tr>
+	{/if}
+</table>
+{if $shippingData}
+<table width="100%">
+	<tr>
+		<th>Order ID</th><th>Tracking #</th><th>Packaged</th><th>Shipped</th>
+	</tr>
+	{foreach from=$shippingData item=sd}
+	<tr>
+		<td>{$sd.uniq_id}</td><td>{$sd.tracking_no}</td><td>{$sd.packaged}</td><td>{$sd.shipped}</td>
+	</tr>
+	{/foreach}
+</table>
+{/if}

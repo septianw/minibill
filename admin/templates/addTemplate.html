@@ -1,0 +1,18 @@
+<table>
+<form action="index.php" method="post">
+<input type="hidden" name="action" value="saveTemplate">
+{if $template.id}
+<input type="hidden" name="template[id]" value="{$template.id}">
+<input type="hidden" name="template[stamp]" value="{$newstamp}">
+{/if}
+	<tr>
+		<td>Template: {if $template.name}<b>{$template.name}</b>{else}<input type="text" name="template[name]">{/if}</td>
+	</tr>
+	<tr>
+		<td><textarea name="template[content]" cols="80" rows="20">{$template.content}</textarea>
+	</tr>
+	<tr>
+		<td style="text-align:center"><input type="submit" value="Save"></td>
+	</tr>
+</form>
+</table>

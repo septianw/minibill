@@ -1,0 +1,24 @@
+<br />
+<table>
+	<tr>
+		<th>Client Description</th>
+		<th>Revenue</th>
+		<th>Time</th>
+		<th></th>
+	</tr>
+	{foreach from=$clients item=client}
+	<tr>
+		<td><a href="index.php?page=timesheet_editClient&client_id={$client.id}">{$client.clientDesc|stripslashes}</a></td>
+		<td>{$client.totals.revenue|number_format:2}</td>
+		<td>{$client.totals.time.days}D {$client.totals.time.hours}:{$client.totals.time.minutes}:{$client.totals.time.seconds}</td>
+		<td>
+		{if $client.totals.revenue > 0}<a href="index.php?page=timesheet_sendBill&client_id={$client.id}">[BILL]{/if}</td>
+	</tr>
+	{/foreach}
+	<tr>
+		<td align="right"><b>Total Due</b></td>
+		<td><b>{$total.revenue|number_format:2}</b></td>
+		<td><b>{$total.time.days}D {$total.time.hours}:{$total.time.minutes}:{$total.time.seconds}</b></td>
+		<td></td>
+	</tr>
+</table>

@@ -1,0 +1,20 @@
+{foreach from=$messages key=i item=msg}
+
+<table id="msg_{$i}"  style="margin:0px;background:{$msg.bgcolor};width:100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td><img src="{$msg.img}?rad={$msg.rad}&pos=tl&ci={$msg.bgcolor|urlencode}&co={$msg.outline|urlencode}&border={$msg.border}"></td>
+		<td colspan="2" align="right"><img src="{$msg.img}?rad={$msg.rad}&pos=tr&ci={$msg.bgcolor|urlencode}&co={$msg.outline|urlencode}&border={$msg.border}"></td>
+	</tr>
+	<tr>
+		<td colspan="3" style="color:{$msg.color};padding:10px">{$msg.msg}</td>
+	</tr>
+	<tr>
+		<td><img src="{$msg.img}?rad={$msg.rad}&pos=bl&ci={$msg.bgcolor|urlencode}&co={$msg.outline|urlencode}&border={$msg.border}"></td>
+		<td colspan="2" align="right"><img src="{$msg.img}?rad={$msg.rad}&pos=br&ci={$msg.bgcolor|urlencode}&co={$msg.outline|urlencode}&border={$msg.border}"></td>
+	</tr>
+</table>
+
+	{literal}<script language="javaScript">{/literal}
+		setTimeout("document.getElementById('msg_{$i}').style.display='none'",({$msg.delay} * 1000) + {$i} * 2000);
+	{literal}</script>{/literal}
+{/foreach}

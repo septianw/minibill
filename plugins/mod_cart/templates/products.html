@@ -1,0 +1,55 @@
+{literal}
+<style>
+
+.content    { width:720px;border:1px solid #CDCDCD;margin-bottom:30px;}
+.rounded	{ width:720px;margin:0px;border:0px;background:#CDCDCD;padding:0px}
+.outOfStock { float:right;width:100%;background:#a00000;color:#FFFFFF;}
+.cartPrice  { font-size:19px;font-weight:bold;color:#000000;text-align:right}
+.cartTitle  { border:0px;padding-top:3px;font-size:19px }
+.imgBox		{ width:48%;border:1px solid #CDCDCD;float:right;}
+.descBox	{ width:48%;margin-left:10px;float:left}
+
+</style>
+{/literal}
+
+{foreach from=$products item=p}
+	<br />
+	<table class="rounded" cellpadding="0">
+		<tr>
+			<td><img src="img/corner.php?rad=15&pos=tl&ci=CDCDCD&co=000000&"></td>
+			<td colspan="2" align="right"><img src="img/corner.php?rad=15&pos=tr&ci=CDCDCD&co=000000&"></td>
+		</tr>
+	</table>
+
+	<table class="content">
+		<tr style="background:#EFEFEF">
+			<td class="cartTitle" valign="top">{$p.title}</td>
+			<td class="cartPrice">{$config.currency.char}{$p.price} {$config.currency.code}</td>
+		</tr>
+		<tr>
+			<td align="right" colspan="2" class="cartPrice"><font size="-3">{if $p.stock > 0}We have {$p.stock} in stock{elseif $p.stock == -1}In stock
+				{elseif $p.stock == 0}
+				<div class="outOfStock"><span style="margin-right:10px">OUT OF STOCK</span></div>
+			{/if}
+			</font>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" colspan="2">
+				<div class="descBox">
+				{$p.item_desc}
+				</div>
+				<div align="center" class="imgBox">
+					{if $p.largeimg}<a href="index.php?page=orderform&order={$p.id}"><img src="{$p.largeimg}" border="0"></a>{else}<h2>No Image</h2>{/if}
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td align="right" colspan="2">
+				{if $p.stock != 0}
+				<span class="addToCart"><a class="addToCart" href="index.php?page=orderform&order={$p.id}"><img src="{$config.plugin_dir}/{$thisPlugin}/img/add2cart.gif" style="margin:3px;border:2px solid #CDCDCD"></a></span>
+			{/if}
+			</td>
+		</tr>
+	</table>
+{/foreach}

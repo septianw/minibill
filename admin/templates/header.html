@@ -1,0 +1,24 @@
+<title>{$title} :: MiniBill - Reliable billing and inventory on a mini budget</title>
+<body>
+<table style="background:#EFEFEF;width:100%" cellpadding="0" cellspacing="0" align="center">
+    <tr>
+        <td><img src="../img/corner.php?rad=15&pos=tl&trans=FFFFF1&ci=FFFFF1&co=FFFFFF&"></td>
+        <td colspan="2" align="right"><img src="../img/corner.php?rad=15&trans=FFFFF1&pos=tr&ci=FFFFF1&co=FFFFFF&"></td>
+    </tr>
+    <tr>
+        <td colspan="3">
+			<div style="float:left;margin-left:40px;margin-bottom:10px;">
+				<a href="http://www.ultrize.com/minibill/"><img src="../img/minibill_logo.png" border="0"></a>
+			</div>
+            <div style="text-align:right;margin-right:40px">
+				<h1>{$title}</h1>
+            </div>
+        </td>
+    </tr>
+</table>
+
+{if $new_version}
+<div style="background:lightgreen;text-align:center">New MiniBill Version: <a href="http://www.ultrize.com/minibill/">{$new_version}</a></div>
+{/if}
+
+{if $DEMO_MODE}<center>** DEMO MODE **</center>{/if}

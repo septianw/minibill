@@ -1,0 +1,22 @@
+{if $prods}
+<table colspan="3" width="100%">
+    <tr>
+        <th style="text-align:center" width="60">SELECT</b></td>
+        <th>ID</td>
+        <th>NAME</td>
+        <th width="50" style="text-align:right">PRICE</b></td>
+        <th width="50" style="text-align:right">STOCK</b></td>
+        <th width="60">QUANTITY</b></td>
+    </tr>
+{foreach from=$prods item=p}
+    <tr>
+        <td style="text-align:center"><input type="checkbox" name="prod[{$p.id}][id]" value="{$p.id}"></td>
+        <td>{$p.id}</td>
+        <td><a href="index.php?page=editProduct&id={$p.id}">{$p.title}</a></td>
+        <td style="text-align:right">{$p.price}</td>
+        <td style="text-align:center">{if $p.stock > -1}{$p.stock}{else}*{/if}</td>
+        <td style="text-align:center"><input type="text" name="prod[{$p.id}][quantity]" size="2"></td>
+    </tr>
+{/foreach}
+</table>
+{/if}

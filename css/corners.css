@@ -1,0 +1,39 @@
+.tlCorner
+{
+    float:left;
+    height:8px;
+    width:8px;
+    background:url("../img/corner.php?rad=15&pos=tl&ci=EFEFEF&co=FFFFFF");
+    background-repeat:no-repeat;
+    background-position: top left;
+}
+
+.trCorner
+{
+    float:right;
+    height:8px;
+    width:8px;
+    background:url("../img/corner.php?rad=15&pos=tr&ci=EFEFEF&co=FFFFFF");
+    background-repeat:no-repeat;
+    background-position: top right;
+}
+
+.blCorner
+{
+    float:left;
+    height:8px;
+    width:8px;
+    background:url("../img/corner.php?rad=15&pos=bl&ci=EFEFEF&co=FFFFFF");
+    background-repeat:no-repeat;
+    background-position: bottom left;
+}
+
+.brCorner
+{
+    float:right;
+    height:8px;
+    width:8px;
+    background:url("../img/corner.php?rad=15&pos=br&ci=EFEFEF&co=FFFFFF");
+    background-repeat:no-repeat;
+    background-position: bottom right;
+}

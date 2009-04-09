@@ -1,0 +1,15 @@
+<div style="border-bottom:1px solid black">
+	Any of these variables can be accessed in the templates using smarty template dot notation.  e.g.:<br /><br />
+	
+	{literal}{$config.company.contact_email}{/literal} will return: <b>{$config.company.contact_email}</b><br />
+	{literal}{$config.company.name}{/literal} will return: <b>{$config.company.name}</b><br /><br />
+	And you can add as many custom fields as you wish and reference them anywhere your templates are parsed.
+</div>
+<table width="100%" class="niceBox">
+{foreach from=$configIDs item=conf}
+	{cycle values="</tr><tr>, "}
+		<td><a href="index.php?page=editConfig&id={$conf.id}">[{$conf.id|upper}]</a>
+			<br /><span style="margin-left:10px">{$conf.desc}</span></td>
+{/foreach}
+	</tr>
+</table>

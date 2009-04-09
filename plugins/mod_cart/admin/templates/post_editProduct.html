@@ -1,0 +1,64 @@
+<table>
+<form action="index.php" name="mod_cart_upload" method="post" enctype="multipart/form-data">
+<input type="hidden" name="action" value="image_upload">
+<input type="hidden" name="product_id" value="{$smarty.get.id}">
+	<tr>
+		<th colspan="2">Cart Images Configuration</th>
+	</tr>
+	<tr>
+		<td valign="top">
+			<table>
+				{if $thumbNail.name}
+				<tr>
+					<th colspan="2">Thumb Nail</th>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+					<div style="background:#EFEFEF"><b>{$thumbNail.name}</b></div>
+					<img src="../{$config.mod_cart.image_url}{$thumbNail.name}"><br />
+					<div style="background:#EFEFEF"><b>{$thumbNail.sizeF}</b> ({$thumbNail.56k} SEC @ 56k)</div>
+					</td>
+				</tr>
+				{else}
+				<tr>
+					<td colspan="2"><h2>No thumbnail Image</h2></td>
+				</tr>
+				{/if}
+				<tr>
+					<td colspan="2">
+						<input type="file" name="thumbNail" class="btn">
+						<input type="submit" value="Upload" class="btn">
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td valign="top">
+			<table>	
+
+				{if $largeImage.name}
+				<tr>
+					<th colspan="2">Large Image</th>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+					<div style="background:#EFEFEF"><b>{$largeImage.name}</b></div>
+					<img src="../{$config.mod_cart.image_url}{$largeImage.name}"><br />
+					<div style="background:#EFEFEF"><b>{$largeImage.sizeF}</b> ({$largeImage.56k} SEC @ 56k)</div>
+					</td>
+				</tr>
+				{else}
+				<tr>
+					<td colspan="2"><h2>No Large Image</h2></td>
+				</tr>
+				{/if}
+				<tr>
+					<td colspan="2">
+						<input type="file" name="largeImage" class="btn">
+						<input type="submit" value="Upload" class="btn">
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>

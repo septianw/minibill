@@ -1,0 +1,68 @@
+{* Javascript and CSS *}
+{include file="js_header.html"}
+
+<div style="margin:auto;text-align:center;" id="header">
+	{* Header content *}
+
+	{if !$nohead}
+	<div style="width:100%;margin:auto;text-align:left">
+		{include file="header.html"}
+	</div>
+	{/if}
+</div>
+
+{* TABLES :: A most unfortunate time saver *}
+<table border=0 cellpadding=0 cellspacing=0 width="100%">
+	{if !$nohead && !$nomenu && $menu}
+	<tr>
+		<td valign="top" width="140" rowspan="3" style="padding-right:5px">
+				{include file="loadPlugins.html" pos="aboveNav"}
+				{include file="menu.html"}
+				{include file="loadPlugins.html" pos="belowNav"}
+		</td>
+	</tr>
+	{/if}
+	<tr>
+		<td valign="top">
+			{* Status Messages are displayed here *}
+			<div align="center" style="width:100%;margin:0px;padding:0px" id="systemMessages">
+				{include file="system_messages.html"}
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" align="center">
+			<table width="100%">
+				<tr>
+					<td valign="top">
+						<div id="leftSide">
+							{include file="loadPlugins.html" pos="leftSide"}
+						</div>
+					</td>
+					<td valign="top">
+						{* Actual (real) template goes here in pageData *}
+						<div id="pageData">
+							{include file="loadPlugins.html" pos="above"}
+							{$pageData}
+							{include file="loadPlugins.html" pos="below"}
+						</div>
+					</td>
+					<td valign="top">
+						<div id="rightSide">
+							{include file="loadPlugins.html" pos="rightSide"}
+						</div>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+{* Footer information *}
+{if !$nohead}
+<div style="clear:both">
+	{include file="footer.html"}
+</div>
+{/if}
+
+{include file="js_footer.html"}

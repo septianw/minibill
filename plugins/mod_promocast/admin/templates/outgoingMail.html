@@ -1,0 +1,39 @@
+<h2>Outgiong Message Schedule</h2>
+	
+<table width="100%">
+	<tr>
+		<td colspan="5">
+			<form method="post" action="index.php">
+				<input type="hidden" name="page" value="outgoingMail">
+				Search By <select name="search[by]">
+				<option value="mc_send_date">Send Date</option>
+				<option value="mc_user">User ID</option>
+				<option value="q_sender_email">Sender Email</option>
+				<option value="q_subject">Message Subject</option>
+				<option value="q_sender_name">Sender Name</option>
+				</select> <input type="text" name="search[value]"><input type="submit" value="GO">
+			</form>
+		</td>
+	</tr>
+	<tr>
+		<th>User</th>
+		<th>Sender</th>
+		<th>Subject</th>
+		<th>Send Date</th>
+		<th></th>
+	</tr>
+
+	{foreach from=$messages item=msg}
+	<form action="index.php" method="get">
+	<input type="hidden" name="action" value="outgoingTimeChange">
+	<input type="hidden" name="mc_id" value="{$msg.mc_id}">
+	<tr>
+		<td>{$msg.q_u_id}</td>
+		<td>{$msg.q_sender_name} <span id="email_{$msg.mc_id}" style="display:none">{$msg.q_sender_email}</span></td>
+		<td>{$msg.q_subject}</td>
+		<td><input type="text" name="mc_send_date" value="{$msg.mc_send_date}"><input type="submit" class="btn" value="SET" ></td>
+		<td><a href="javaScript:confirmAction('index.php?action=delCampaign&id={$msg.mc_id}','Delete this campaign?')"><img src="../img/trash.gif"></td>
+	</tr>
+	</form>
+	{/foreach}
+</table>

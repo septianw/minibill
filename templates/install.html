@@ -1,0 +1,115 @@
+<div style="clear:both;margin:10px">
+<form action="index.php" method="POST">
+<input type="hidden" name="action" value="install">
+<table align="center" width="520">
+<tr>
+	<td colspan="2">
+		<p><b>NOTICE:</b><br />
+			Make sure your config.php file is read/writable by the web server.  
+		</p>
+	</td>
+</tr>
+<tr>
+	<th colspan="2">MySQL Database Information</th>
+</tr>
+<tr>
+	<td>Host Name</td>
+	<td>
+		<input type="text" name="conf[db_host]" size="40" value="{$config.db_host|htmlentities}">
+	</td>
+</tr>
+<tr>
+	<td>Database Name</td>
+	<td>
+		<input type="text" name="conf[db_name]" size="40" value="{$config.db_name|htmlentities}">
+	</td>
+</tr>
+<tr>
+	<td>Database User</td>
+	<td>
+		<input type="text" name="conf[db_user]" size="40" value="{$config.db_user|htmlentities}">
+	</td>
+</tr>
+<tr>
+	<td>Database Password</td>
+	<td>
+		<input type="text" name="conf[db_pass]" size="40" value="{$config.db_pass|htmlentities}">
+	</td>
+</tr>
+<tr>
+	<th colspan="2">Security Information</th>
+</tr>
+<tr>
+	<td>Encryption Key </td>
+	<td>
+
+		<input type="text" name="conf[secret_key]" size="40" value="{$config.secret_key|htmlentities}">
+	</td>
+</tr>
+<tr>
+	<td colspan="2"><p><sup>
+					<ul>
+						<li>A key has been randomly generated for you.</li>
+						<li>Please create this only 1 time.</li>
+						<li>Make sure it is 8 characters or longer and something nobody will guess.</li>
+						<li>If this gets changed after you have account information in the database, the encryption will no longer work for your previous data.</li>
+					</ul></sup></p>
+	</td>
+</tr>
+<tr>
+	<td>Session save path</td>
+	<td>
+		<input type="text" name="conf[session_save_path]" size="40" value="{$config.session_save_path|htmlentities}">
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+		<p>
+		<b>WARNING:</b><br />
+		<sup>
+		<ul>
+			<li>If you are on a shared hosting plan, please make this a secure location away from other users as session files can contain potentially sensitive data.</li>
+			<ul><li>If you are not sure if you are on a shared hosting plan, Please contact your administrator to find out if you are on a shared hosting server.</li>
+			</ul>
+			<li>You will want to make sure this directory is read/writable by the webserver.</li>
+		</ul>
+		</sup></p>
+	</td>
+</tr>
+<tr>
+	<td>Template cache directory</td>
+	<td>
+		<input type="text" name="conf[template_cache_dir]" size="40" value="{$config.template_cache_dir|htmlentities}">
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+		<p><b>NOTICE:</b><br />
+		<sup><ul><li>Make sure this directory is read/writable by your webserver</li>
+				<ul>
+					<li>Set permissions: <b>chmod 777 {$config.template_cache_dir}</b></li>
+				</ul>
+				<li>If you are on a shared hosting server, keep this directory away from other users</li>
+				<li> Using the default here is usually okay.</li>  </ul>
+			</sup></p>
+	</td>
+</tr>
+<tr>
+	<th colspan="2">Disclaimer</th>
+</tr>
+<tr>
+	<td colspan="2" style="text-align:justify">
+	{include file="disclaimer.txt"}
+	</td>
+</tr>
+<tr>
+	<td colspan="2" align="right"><input type="submit" class="btn" value="Agree / Install"></td>
+</tr>
+</table>
+</form>
+</div>
+{literal}
+<script>
+	document.forms[0].elements[1].focus();
+</script>
+{/literal}

@@ -1,0 +1,31 @@
+{if $cats}
+<table width="100%">
+	<tr>
+		<th>ID</th>
+		<th>TITLE</th>
+		<th>WELCOME</th>
+		<th>SUSPEND</th>
+		<th>INVOICE</th>
+		<th>ERROR</th>
+		<th>SUCCESS</th>
+		<th></th>
+	</tr>
+	{foreach from=$cats item=cat}
+	<tr>
+		<td>{$cat.id}</td>
+		<td><a href="index.php?page=editCategory&id={$cat.id}">{$cat.title}</a></td>
+		<td><a href="index.php?page=editTemplate&name={$cat.welcome_template}">{$cat.welcome_template}</a></td>
+		<td><a href="index.php?page=editTemplate&name={$cat.suspend_template}">{$cat.suspend_template}</a></td>
+		<td><a href="index.php?page=editTemplate&name={$cat.invoice_template}">{$cat.invoice_template}</a></td>
+		<td><a href="index.php?page=editTemplate&name={$cat.error_template}">{$cat.error_template}</a></td>
+		<td><a href="index.php?page=editTemplate&name={$cat.success_template}">{$cat.success_template}</a></td>
+		<td><a href="javascript:confirmAction('index.php?action=delCategory&id={$cat.id}','Delete this category?');"><img src="../img/trash.gif" border="0" align="absmiddle"></a></td>
+	</tr>
+	{/foreach}
+</table>
+{else}
+<blockquote>
+	<h2>No categories</h2>
+	<a href="index.php?page=addCategory"><h3>&raquo; Add a new category</h3></a>
+</blockquote>
+{/if}

@@ -1,0 +1,43 @@
+<form action="index.php" method="POST">
+<input type="hidden" name="action" value="saveFormConfig">
+{if $form.id}
+	<input type="hidden" name="form[id]" value="{$form.id}">
+{/if}
+<table id="editForm" border=0 cellpadding=3>
+	<tr>
+		<th colspan="2">Custom form setup</th>
+	</tr>
+	<tr>
+		<td>Form name / title</td>
+		<td><input type="text" value="{$form.name}" size="30" style="width:100%" name="form[name]"></td>
+	</tr>
+	<tr>
+		<td>Questions per page</td>
+		<td ><input type="text" value="{$form.q_per_page}" size="2" name="form[q_per_page]"></td>
+	</tr>
+	<tr>
+		<td>Form releates to</td>
+		<td><select name="form[product_id]">
+		<option value="">[SELECT ONE]</option>
+        {html_options options=$products selected=$form.product_id}
+        </select>
+		</td>
+	</tr>
+	<tr>
+		<td>Form is required </td>
+		<td>
+			<select name="form[askfreq]">
+			<option value="each product" {if $form.askfreq == 'each product'}SELECTED{/if}> per each product </option>
+			<option value="once" {if $form.askfreq == 'once'}SELECTED{/if}> once </option>
+			</select>
+			<select name="form[ask]">
+			<option value="before" {if $form.ask == 'before'}SELECTED{/if}>before</option>
+			<option value="after" {if $form.ask == 'after'}SELECTED{/if}>after</option>
+			</select> purchase of item
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right"><input type="submit" value="&laquo; Save &raquo;" class="btn"></td>
+	</tr>
+</table>
+</form>

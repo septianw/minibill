@@ -1,0 +1,25 @@
+{if $config.merchant.use_authnet}
+	<div class="blueHeader">Credit Card Information</div>
+	<div class="formLabel">Card Number</div>
+		<div class="element">
+            {if $DEMO_MODE}
+            <select name="user[cardnum]" class="{$error_cardnum}">
+				<option value="4222222222222">Error Response Test</option>
+				<option value="4007000000027">Visa</option>
+				<option value="5424000000000015">MasterCard</option>
+				<option value="6011000000000012">Discover</option>
+				<option value="370000000000002">American Express</option>
+            </select>
+            {else}
+            <input type="text" class="{$error_cardnum}" name="user[cardnum]" maxlength="255" size="20" value="{$cardnum}">
+            {/if}
+		</div><br />
+	<div class="formLabel">Expiration</div>
+		<div class="element">
+			<sup>MM&nbsp;&nbsp;&nbsp; /&nbsp;&nbsp;&nbsp; YYYY</sup><br />
+			<input type="text" class="{$error_cc_exp_mo}" name="user[cc_exp_mo]" maxlength="2" size="2" value="{$cc_exp_mo}"> 
+			/ <input type="text" class="{$error_cc_exp_yr}" name="user[cc_exp_yr]" maxlength="4" size="4" value="{$cc_exp_yr}">
+		</div><br />
+	<div class="formLabel">Verify Card <br /><sup>(3 - 4 digit number on back of card)</sup></div>
+        <div class="element"><input type="text" class="{$error_cvv}" name="user[cvv]" maxlength="5" size="3" value="{$cvv}"></div><br />
+{/if}

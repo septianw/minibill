@@ -1,0 +1,27 @@
+{if $forms}
+<div id="content">
+	<table id="list" width="100%">
+		<tr>
+			<th>Form Name</th>
+			<th>Questions</th>
+			<th>Relates to order</th>
+			<th align="center"># Completed</th>
+			<th>Date Created</th>
+			<th></th>
+		</tr>
+		{foreach from=$forms item=form}
+		<tr style="background:{cycle values="#EFEFEF,#FFFFFF"}">
+			<td><a href="index.php?page=configForm&id={$form.id}"><img src="../img/edit.gif" border="0" align="absmiddle"> {$form.name}</a></td>
+			<td><a href="index.php?page=editForm&id={$form.id}" title="Edit Questions"><img src="../img/edit.gif" border="0" align="absmiddle"> {$form.questions}</a></td>
+			<td align="center"><i>{$form.askfreq} {$form.ask}</i> <b>{$form.item_title}</b></td>
+			<td align="center">{$form.takers|number_format}</td>
+			<td>{$form.date}</td>
+			<td><a href="javascript:confirmAction('index.php?action=delForm&id={$form.id}','Delete form &quot;{$form.name|addslashes}&quot;')"><img src="../img/trash.gif" border="0" align="absmiddle"></a></td>
+		</tr>
+		{/foreach}
+	</table>
+</div>
+{else}
+<h2>No forms created</h2>
+<a href="index.php?page=newForm">Create a new form</a>
+{/if}

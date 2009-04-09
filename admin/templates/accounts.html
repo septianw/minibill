@@ -1,0 +1,44 @@
+<table cellpadding="3" width="100%">
+<form name="search" method="GET">
+<input type="hidden" name="page" value="accounts">
+	<tr style="background: #CDCDCD">
+		<th colspan="2">Customer Search</th>
+	</tr>
+	<tr>
+		<td align="center"><select name="search[type]">
+			<option {$SELECTname} value="name">Name</option>
+			<option {$SELECTemail} value="email">Email</option>
+			<option {$SELECTstate} value="state">State</option>
+			<option {$SELECTzipcode} value="zipcode">ZipCode</option>
+			<option {$SELECTcountry} value="country">Country</option>
+			<option {$SELECTphone} value="phone">Phone Number</option>
+		</td>
+		<td align="center"><input type="text" name="search[phrase]" size="20"><input class="btn" type="submit" value="GO">
+	</tr>
+</form>
+</table>
+<table cellpadding="3" width="100%">
+	<tr>
+		<th>ID</th>
+		<th>NAME</th>
+		<th>EMAIL</th>
+		<th align="center">ST / ZIP</th>
+		<th align="center">LAST PURCHASE</th>
+		<th align="center">TOTAL</th>
+		<th></th>
+	</tr>
+{foreach from=$users item=user}
+	<tr style="background:{cycle values="#EFEFEF,#FFFFFF"}">
+		<td><a href="index.php?page=orderdetail&user_id={$user.id}" title="Show orders made by this user">{$user.id|number_format}</a></td>
+		<td><a href="index.php?page=editUser&id={$user.id}" title="Edit user info">{$user.firstname}, {$user.lastname}</a></td>
+		<td><a href="mailto:{$user.email}">{$user.email}</a></td>
+		<td align="center"><a href="index.php?page=accounts&search[type]=state&search[phrase]={$user.state}" title="Display orders from this state">{$user.state}</a> / <a href="index.php?page=accounts&search[type]=zipcode&search[phrase]={$user.zipcode}" title="Display orders from this zipcode">{$user.zipcode}</a></td>
+		<td align="center"><a href="index.php?page=accounts&date={$user.last_purchase_stamp}" title="{$user.last_purchase_stamp}">{$user.last_purchase_stamp|date_format}</a></td>
+		<td align="right">{$user.totals|number_format:2}</td>
+		<td>
+			<a href="index.php?page=editUser&id={$user.id}"><img src="../img/edit.gif" border="0" align="absmiddle"></a> |
+			<a href="javascript:confirmAction('index.php?action=delUser&id={$user.id}','Delete this user {$user.id}')"><img src="../img/trash.gif" border="0" align="absmiddle"></a>
+		</td>
+	</tr>
+{/foreach}
+</table>
